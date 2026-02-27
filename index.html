@@ -3,264 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damar | Minimalist Developer Portfolio</title>
     
+    <title>Damar | Frontend Developer & Programmer</title>
+    <meta name="description" content="Portofolio Damar, seorang Frontend Developer dan Project Leader yang berfokus pada pembuatan antarmuka web yang responsif dan integrasi aplikasi enterprise.">
+    <meta name="keywords" content="Damar, Frontend Developer, Web Developer, UI/UX, Programmer, Indonesia, Bootstrap, SQL, SAP Integration">
+    <meta name="author" content="Damar">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://images.unsplash.com">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <style>
-        /* Tipografi ala Apple */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fbfbfd; 
-            color: #111827;
-            overflow-x: hidden;
+        :root {
+            --primary-blue: #007aff;
+            --primary-purple: #5856d6;
+            --bg-light: #fbfbfd;
+            --text-dark: #111827;
+            --text-secondary: #4b5563;
+            --border-light: rgba(0, 0, 0, 0.08);
         }
 
-        /* --- Custom Badge "Ready to Innovate" --- */
-        .badge-innovate {
-            background-color: #f0f5ff;
-            color: #1d4ed8;
-            border: 1px solid #bfdbfe;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 20px;
-            font-size: 15px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
-        }
-        .badge-innovate .dot-wrapper {
-            width: 18px;
-            height: 18px;
-            background-color: #dbeafe;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Animasi Pulse untuk Dot */
-        @keyframes pulse-dot {
-            0% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-            100% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-        }
-
-        .badge-innovate .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #2563eb;
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite; /* Dot dibuat pulse */
-        }
-
-        /* --- Hero Section & Interactive Aurora --- */
-        #hero { 
-            position: relative; 
-            overflow: hidden; 
-            background: #f0f4f8;
-        }
-        .aurora-hero { 
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; 
-        }
+        html { scroll-behavior: smooth; }
         
-        /* Animasi Gerakan Aurora yang Lebih Dinamis */
-        @keyframes moveAurora {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(10%, 10%); }
-            50% { transform: translate(-5%, 15%); }
-            75% { transform: translate(-10%, -5%); }
-            100% { transform: translate(5%, -10%); }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--text-dark); 
+            overflow-x: hidden; 
         }
 
-        .aurora-blob {
-            position: absolute; 
-            filter: blur(65px);
-            opacity: 0.85;
-            border-radius: 50%;
-            transition: margin 0.3s ease-out;
+        /* === SCROLL REVEAL ANIMATIONS === */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* === CUSTOM BADGE === */
+        .badge-innovate { 
+            background: linear-gradient(135deg, #f0f5ff 0%, #e8f0ff 100%);
+            color: #1d4ed8; border: 1px solid #bfdbfe; border-radius: 50px; 
+            display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; 
+            font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
         }
+        .badge-innovate .dot-wrapper { width: 18px; height: 18px; background-color: #dbeafe; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .badge-innovate .dot { width: 8px; height: 8px; background-color: #2563eb; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* === HERO & AURORA === */
+        #hero { position: relative; overflow: hidden; background: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%); }
+        .aurora-hero { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+        .aurora-blob { 
+            position: absolute; filter: blur(70px); opacity: 0.8; border-radius: 50%; 
+            animation: float 15s infinite ease-in-out alternate; will-change: transform;
+        }
+        .blob-1 { top: -15%; left: -10%; width: 55vw; height: 55vw; background: radial-gradient(circle, rgba(0, 122, 255, 0.5) 0%, rgba(88, 86, 214, 0.3) 50%, transparent 70%); animation-duration: 18s; }
+        .blob-2 { bottom: -20%; right: -15%; width: 65vw; height: 65vw; background: radial-gradient(circle, rgba(255, 55, 95, 0.45) 0%, rgba(88, 86, 214, 0.35) 50%, transparent 70%); animation-duration: 22s; animation-delay: -5s; }
+        .blob-3 { top: 35%; left: 25%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(0, 199, 190, 0.4) 0%, rgba(0, 122, 255, 0.25) 50%, transparent 70%); animation-duration: 16s; animation-delay: -3s; }
+        .blob-4 { top: 60%; right: 20%; width: 35vw; height: 35vw; background: radial-gradient(circle, rgba(255, 204, 0, 0.35) 0%, rgba(255, 55, 95, 0.2) 50%, transparent 70%); animation-duration: 20s; animation-delay: -8s; }
+
+        @keyframes float { 
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); } 
+            33% { transform: translate(30px, -20px) scale(1.05) rotate(3deg); }
+            66% { transform: translate(-20px, 30px) scale(0.95) rotate(-2deg); }
+            100% { transform: translate(20px, 20px) scale(1.02) rotate(2deg); } 
+        }
+
+        /* === NAVBAR & GLASS === */
+        .navbar-glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--border-light); transition: all 0.3s ease; }
+        .navbar-glass.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); border-radius: 28px; }
+
+        /* === BENTO GRID === */
+        .bento-card { 
+            position: relative; border-radius: 24px; overflow: hidden; background-color: #1d1d1f; color: white; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); height: 100%; min-height: 260px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .bento-card:hover { transform: translateY(-4px) scale(0.98); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
+        .bento-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; transition: all 0.4s ease; }
+        .bento-card:hover .bento-bg { opacity: 0.75; transform: scale(1.05); }
+        .bento-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+        .bento-tall { min-height: 540px; }
+
+        @media (max-width: 991.98px) {
+            .bento-card, .bento-tall { min-height: 280px !important; height: 280px !important; }
+        }
+
+        /* === IOS CARDS (Stats) === */
+        .ios-card { background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 24px; }
+        .ios-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); }
+
+        /* === TABS & PORTFOLIO CARDS === */
+        .modern-tabs { background-color: #f3f4f6; border-radius: 50px; padding: 6px; display: inline-flex; border: 1px solid rgba(0,0,0,0.05); }
+        .modern-tabs .nav-link { color: #4b5563; font-weight: 600; border-radius: 50px; padding: 10px 24px; font-size: 14px; transition: all 0.3s ease; border: none; }
+        .modern-tabs .nav-link:hover { color: var(--text-dark); }
+        .modern-tabs .nav-link.active { background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); color: var(--text-dark); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
         
-        .blob-1 { 
-            top: -10%; left: -10%; width: 50vw; height: 50vw; background: #7ba8eb; 
-            animation: moveAurora 5s infinite alternate; /* Gerakan lambat dan halus */
-        }
-        .blob-2 { 
-            bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #cf9fdf; 
-            animation: moveAurora 10s infinite alternate-reverse; /* Gerakan berbeda arah */
-            animation-delay: -5s;
-        }
-        .blob-3 { 
-            top: 40%; left: 30%; width: 40vw; height: 40vw; background: #84ead1; 
-            animation: moveAurora 15s infinite alternate;
-            animation-delay: -10s; 
-        }
-        
-        .blob-cursor {
-            width: 350px; height: 350px;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.5) 0%, rgba(0, 122, 255, 0) 70%);
-            filter: blur(40px);
-            transform: translate(-50%, -50%);
-            animation: none;
-            pointer-events: none;
-            transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s ease;
-            opacity: 0;
-            z-index: 1;
-        }
+        /* Animasi Transisi Halus pada Tab Bootstrap */
+        .tab-pane { transition: opacity 0.4s ease-in-out; }
 
-        /* Glassmorphism Navbar */
-        .navbar-glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
+        .card-modern { background: #ffffff; border-radius: 24px; padding: 16px; border: 1px solid var(--border-light); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04); transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); height: 100%; display: flex; flex-direction: column; }
+        .card-modern:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1); }
+        .card-modern-img { background-color: #f3f4f6; border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 4/3; margin-bottom: 20px; }
+        .card-modern-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .card-modern:hover .card-modern-img img { transform: scale(1.03); }
+        .card-badge { position: absolute; top: 12px; right: 12px; background: #ffffff; color: var(--text-dark); font-weight: 600; font-size: 11px; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 6px; z-index: 2; }
 
-        /* Bento Grid */
-        .bento-card {
-            position: relative; border-radius: 28px; overflow: hidden; background-color: #1d1d1f; color: white;
-            transition: transform 0.3s ease; height: 100%; min-height: 250px;
-        }
-        .bento-card:hover { transform: scale(0.98); }
-        .bento-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.6; transition: opacity 0.3s;
-        }
-        .bento-card:hover .bento-bg { opacity: 0.8; }
-        .bento-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px;
-        }
-        .bento-tall { min-height: 520px; }
+        /* === TYPOGRAPHY === */
+        .fw-apple-bold { font-weight: 700; letter-spacing: -0.025em; }
+        .text-gradient { background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-secondary { color: var(--text-secondary) !important; }
 
-        /* General iOS Cards */
-        .ios-card {
-            background: #ffffff; border-radius: 24px; border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .ios-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+        /* === SECTION HEADERS === */
+        .section-header { margin-bottom: 48px; }
+        .section-header .section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 8px; }
+        .section-header .section-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; }
 
-        /* Tabs Modern */
-        .modern-tabs {
-            background-color: #f3f4f6;
-            border-radius: 50px;
-            padding: 6px;
-            display: inline-flex;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .modern-tabs .nav-link {
-            color: #4b5563;
-            font-weight: 600;
-            border-radius: 50px;
-            padding: 10px 28px;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: none;
-        }
-        .modern-tabs .nav-link:hover { color: #111827; }
-        .modern-tabs .nav-link.active {
-            background-color: #ffffff;
-            color: #111827;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        }
+        /* === BUTTONS === */
+        .btn-gradient { background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); color: #ffffff !important; border-radius: 100px; padding: 10px 24px; font-weight: 600; font-size: 14px; border: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(88, 86, 214, 0.35); display: inline-flex; align-items: center; gap: 8px; }
+        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(88, 86, 214, 0.45); }
+        .btn-gradient:active { transform: translateY(0) scale(0.98); }
 
-        /* Card Modern */
-        .card-modern {
-            background: #ffffff;
-            border-radius: 28px; 
-            padding: 20px; 
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-modern:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-        }
-        .card-modern-img {
-            background-color: #f3f4f6;
-            border-radius: 16px; 
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 4/3;
-            margin-bottom: 24px;
-        }
-        .card-modern-img img { width: 100%; height: 100%; object-fit: cover; }
-        .card-badge {
-            position: absolute; top: 14px; right: 14px; background: #ffffff;
-            color: #111827; font-weight: 700; font-size: 12px; padding: 6px 14px;
-            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: flex; align-items: center; gap: 6px;
-        }
+        .btn-ios-primary { background: var(--primary-blue); color: white; border-radius: 100px; padding: 12px 28px; font-weight: 600; border: none; transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3); display: inline-flex; align-items: center; gap: 8px; }
+        .btn-ios-primary:hover { background: #0062cc; color: white; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4); }
 
-        /* Utilities Umum */
-        .fw-apple-bold { font-weight: 700; letter-spacing: -0.03em; }
-        .text-gradient { background: linear-gradient(135deg, #007aff, #5856d6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-ios-primary { background: #007aff; color: white; border-radius: 100px; padding: 12px 28px; font-weight: 600; border: none; transition: all 0.2s; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3); }
-        .btn-ios-primary:hover { background: #006ce4; color: white; transform: scale(0.98); box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3); }
-        .section-padding { padding-top: 100px; padding-bottom: 100px; }
-        .text-secondary { color: #4b5563 !important; }
+        /* === TRUST BADGES === */
+        .trust-badge-card { background: #ffffff; border-radius: 20px; padding: 28px 20px; text-align: center; border: 1px solid var(--border-light); height: 100%; transition: all 0.3s ease; }
+        .trust-badge-card:hover { box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08); transform: translateY(-4px); }
+        .trust-icon { width: 56px; height: 56px; background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; font-size: 24px; color: var(--primary-blue); transition: all 0.3s ease; }
+        .trust-badge-card:hover .trust-icon { background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); color: white; }
 
-        /* --- Hover Interaktif pada Pre-Footer Trust Badges --- */
-        .trust-badge-card { 
-            background: #ffffff; 
-            border-radius: 20px; 
-            padding: 30px 20px; 
-            text-align: center; 
-            border: 1px solid rgba(0,0,0,0.06); 
-            height: 100%; 
-            transition: all 0.3s ease; /* Transisi diperhalus untuk transform */
-        }
-        .trust-badge-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.08); 
-            border-color: rgba(0, 122, 255, 0.2);
-        }
-        .trust-icon { 
-            width: 50px; 
-            height: 50px; 
-            background: #f0f5ff; /* Warna diubah sedikit agar sinkron dengan brand */
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin: 0 auto 15px auto; 
-            font-size: 20px; 
-            color: #007aff; 
-            transition: all 0.3s ease;
-        }
-        .trust-badge-card:hover .trust-icon {
-            background: #007aff;
-            color: #ffffff;
-            transform: scale(1.1);
-        }
+        /* === FOOTER === */
+        .footer-light { background: linear-gradient(180deg, #f5f5f7 0%, #f0f0f2 100%); border-top: 1px solid var(--border-light); padding: 80px 0 40px 0; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 12px; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+        .footer-link:hover { color: var(--primary-blue); transform: translateX(2px); }
+        .footer-title { color: var(--text-dark); font-weight: 700; margin-bottom: 20px; font-size: 15px; letter-spacing: -0.01em; }
 
-        /* Footer */
-        .footer-light { background-color: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.06); padding: 80px 0 40px 0; }
-        .footer-link { color: #4b5563; text-decoration: none; display: block; margin-bottom: 12px; font-weight: 500; transition: color 0.2s; }
-        .footer-link:hover { color: #007aff; }
-        .footer-title { color: #111827; font-weight: 700; margin-bottom: 24px; font-size: 16px; }
+        /* === BACK TO TOP === */
+        .btn-back-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); color: #ffffff; border: none; box-shadow: 0 8px 24px rgba(0, 122, 255, 0.35); display: flex; align-items: center; justify-content: center; font-size: 20px; z-index: 999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; cursor: pointer; }
+        .btn-back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        .btn-back-to-top:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 12px 32px rgba(0, 122, 255, 0.45); }
+
+        /* === TECH ICONS === */
+        .tech-icon-box { width: 72px; height: 72px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; transition: all 0.3s ease; margin-bottom: 12px; }
+        .tech-icon-box:hover { transform: translateY(-4px) scale(1.05); }
+
+        /* === SECTION SPACING === */
+        .section-padding { padding: 100px 0; }
+        @media (max-width: 991.98px) { .section-padding { padding: 70px 0; } }
+        @media (max-width: 767.98px) { .section-padding { padding: 50px 0; } }
+
+        /* === SELECTION === */
+        ::selection { background: rgba(0, 122, 255, 0.2); color: var(--text-dark); }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3" id="navbar">
         <div class="container">
             <a class="navbar-brand fw-apple-bold fs-4 text-gradient" href="#">Damar.</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav align-items-center gap-3 fw-medium">
+                <ul class="navbar-nav align-items-center gap-2 fw-medium">
                     <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#hero">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#spesialisasi">Spesialisasi</a></li>
                     <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#portfolio">Portofolio</a></li>
-                    <li class="nav-item ms-lg-3"><a href="#contact" class="btn-ios-primary text-decoration-none py-2 px-4" style="font-size: 14px;">Hire Me</a></li>
+                    <li class="nav-item ms-lg-2"><a href="#contact" class="btn-gradient text-decoration-none"><i class="bi bi-briefcase-fill"></i> Hire Me</a></li>
                 </ul>
             </div>
         </div>
@@ -271,34 +196,39 @@
             <div class="aurora-blob blob-1"></div>
             <div class="aurora-blob blob-2"></div>
             <div class="aurora-blob blob-3"></div>
+            <div class="aurora-blob blob-4"></div>
         </div>
 
         <div class="container position-relative z-1">
             <div class="row align-items-center flex-column-reverse flex-lg-row g-5">
                 <div class="col-lg-7 text-center text-lg-start pt-4 pt-lg-0">
-                    <div class="badge-innovate mb-4">
-                        <div class="dot-wrapper">
-                            <div class="dot"></div>
-                        </div>
+                    <div class="badge-innovate mb-4 reveal">
+                        <div class="dot-wrapper"><div class="dot"></div></div>
                         Ready to Innovate
                     </div>
                     
-                    <h1 class="fw-apple-bold display-3 mb-4 lh-sm">
+                    <h1 class="fw-apple-bold display-3 mb-4 lh-sm reveal reveal-delay-1">
                         Membangun <br />
                         <span class="text-gradient">Aplikasi Nyata</span> <br />
                         Berkinerja Tinggi.
                     </h1>
-                    <p class="lead text-secondary mb-5 fw-medium" style="max-width: 500px; margin: 0 auto 0 0;">
+                    <p class="lead text-secondary mb-5 fw-medium reveal reveal-delay-2" style="max-width: 500px; margin: 0 auto 0 0;">
                         Frontend Developer dan Project Leader yang merancang antarmuka presisi dan mengintegrasikan sistem kompleks menjadi produk digital yang mulus.
                     </p>
-                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#portfolio" class="btn-ios-primary text-decoration-none">Eksplorasi Karya</a>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start reveal reveal-delay-3">
+                        <a href="#portfolio" class="btn-ios-primary text-decoration-none">
+                            <i class="bi bi-grid-3x3-gap-fill"></i> Eksplorasi Karya
+                        </a>
+                        <a href="#contact" class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2">
+                            <i class="bi bi-envelope-fill"></i> Hubungi
+                        </a>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="glass-panel p-2 mx-auto shadow-lg bg-white" style="max-width: 380px; border-radius: 2rem;">
-                        <div class="overflow-hidden" style="border-radius: 1.5rem; aspect-ratio: 4/5; background-color: #e5e5ea;">
-                            <img src="https://via.placeholder.com/600x800.png?text=Foto+Profil" alt="Damar Profile" class="w-100 h-100" style="object-fit: cover;">
+                
+                <div class="col-lg-5 d-none d-lg-block reveal-right">
+                    <div class="glass-panel p-3 mx-auto" style="max-width: 340px;">
+                        <div class="rounded-4 overflow-hidden w-100" style="aspect-ratio: 4/5; background: linear-gradient(135deg, #e8e8ed 0%, #d2d2d7 100%);">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto Profil Damar - Frontend Developer" class="w-100 h-100" style="object-fit: cover;">
                         </div>
                     </div>
                 </div>
@@ -306,52 +236,53 @@
         </div>
     </section>
 
-    <main class="position-relative z-2" style="background-color: #fbfbfd; border-top: 1px solid rgba(0,0,0,0.05);">
+    <main class="position-relative z-2" style="background-color: var(--bg-light);">
 
-        <section id="spesialisasi" class="section-padding pb-4">
+        <section id="spesialisasi" class="section-padding">
             <div class="container">
-                <div class="mb-5 text-center text-md-start">
-                    <h2 class="fw-apple-bold display-5 text-dark text-uppercase">DIBANGUN UNTUK <span style="color: #6b7280;">PERFORMA</span></h2>
-                    <p class="text-secondary fs-5 mt-2">Area spesialisasi yang telah terbukti di berbagai proyek.</p>
+                <div class="section-header text-center reveal">
+                    <h2 class="fw-apple-bold section-title text-dark">Area Spesialisasi.</h2>
+                    <p class="section-subtitle mx-auto">Keahlian teknis yang telah teruji dalam berbagai proyek enterprise dan startup.</p>
                 </div>
+                
                 <div class="row g-4">
                     <div class="col-lg-8">
                         <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="bento-card shadow-sm">
-                                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Dev" class="bento-bg">
+                            <div class="col-md-6 reveal reveal-delay-1">
+                                <div class="bento-card">
+                                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Frontend Web Development" class="bento-bg" loading="lazy">
                                     <div class="bento-overlay">
-                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Frontend Web</h3>
-                                        <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Antarmuka yang bersih, responsif, dan dioptimalkan untuk kecepatan.</p>
+                                        <h3 class="fw-apple-bold text-white mb-2 h5">Frontend Web</h3>
+                                        <p class="text-light mb-0" style="font-size: 14px; opacity: 0.9;">Antarmuka bersih, responsif, dan dioptimalkan untuk kecepatan dengan teknologi modern.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="bento-card shadow-sm">
-                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Dev" class="bento-bg">
+                            <div class="col-md-6 reveal reveal-delay-2">
+                                <div class="bento-card">
+                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Apps Development" class="bento-bg" loading="lazy">
                                     <div class="bento-overlay">
-                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Mobile Apps</h3>
-                                        <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Pengalaman mobile-first. Nyaman digenggam, andal di segala kondisi.</p>
+                                        <h3 class="fw-apple-bold text-white mb-2 h5">Mobile Apps</h3>
+                                        <p class="text-light mb-0" style="font-size: 14px; opacity: 0.9;">Pengalaman mobile-first yang nyaman digenggam dan andal di segala kondisi.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="bento-card shadow-sm" style="min-height: 280px;">
-                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Enterprise" class="bento-bg">
+                            <div class="col-12 reveal reveal-delay-3">
+                                <div class="bento-card" style="min-height: 280px;">
+                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Enterprise Database and Server" class="bento-bg" loading="lazy">
                                     <div class="bento-overlay">
-                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Enterprise Integration</h3>
-                                        <p class="text-light mb-0 max-w-md" style="font-size: 15px; opacity: 0.95;">Penguasaan logika kompleks, database SQL, dan integrasi SAP.</p>
+                                        <h3 class="fw-apple-bold text-white mb-2 h5">Enterprise Integration</h3>
+                                        <p class="text-light mb-0" style="font-size: 14px; opacity: 0.9; max-width: 500px;">Penguasaan logika kompleks, database SQL, dan integrasi SAP untuk solusi bisnis skala besar.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        <div class="bento-card bento-tall shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leadership" class="bento-bg">
+                    <div class="col-lg-4 mt-4 mt-lg-0 reveal reveal-delay-4">
+                        <div class="bento-card bento-tall">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project Leadership" class="bento-bg" loading="lazy">
                             <div class="bento-overlay">
-                                <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Project Leadership</h3>
-                                <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Memimpin siklus penuh proyek dari arsitektur hingga rilis ke pengguna.</p>
+                                <h3 class="fw-apple-bold text-white mb-2 h5">Project Leadership</h3>
+                                <p class="text-light mb-0" style="font-size: 14px; opacity: 0.9;">Memimpin siklus penuh proyek dari perencanaan arsitektur hingga rilis ke pengguna akhir.</p>
                             </div>
                         </div>
                     </div>
@@ -361,65 +292,111 @@
 
         <section class="pb-5">
             <div class="container">
+                <div class="section-header text-center reveal">
+                    <h2 class="fw-apple-bold section-title text-dark">Pencapaian Terukur.</h2>
+                    <p class="section-subtitle mx-auto">Dedikasi dan konsistensi dalam setiap langkah pengembangan perangkat lunak.</p>
+                </div>
+                
                 <div class="row g-4 text-center">
-                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">3+</h3><p class="text-secondary fw-bold small mt-2 mb-0">TAHUN PENGALAMAN</p></div></div>
-                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">11</h3><p class="text-secondary fw-bold small mt-2 mb-0">PROYEK SELESAI</p></div></div>
-                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">7</h3><p class="text-secondary fw-bold small mt-2 mb-0">SERTIFIKAT IT</p></div></div>
-                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">1</h3><p class="text-secondary fw-bold small mt-2 mb-0">PENGHARGAAN</p></div></div>
+                    <div class="col-6 col-md-3 reveal reveal-delay-1">
+                        <div class="ios-card">
+                            <h3 class="display-4 fw-apple-bold text-gradient mb-1 counter" data-target="3">0</h3>
+                            <p class="text-secondary fw-semibold small mt-2 mb-0">TAHUN PENGALAMAN</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 reveal reveal-delay-2">
+                        <div class="ios-card">
+                            <h3 class="display-4 fw-apple-bold text-gradient mb-1 counter" data-target="11">0</h3>
+                            <p class="text-secondary fw-semibold small mt-2 mb-0">PROYEK SELESAI</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 reveal reveal-delay-3">
+                        <div class="ios-card">
+                            <h3 class="display-4 fw-apple-bold text-gradient mb-1 counter" data-target="7">0</h3>
+                            <p class="text-secondary fw-semibold small mt-2 mb-0">SERTIFIKAT IT</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 reveal reveal-delay-4">
+                        <div class="ios-card">
+                            <h3 class="display-4 fw-apple-bold text-gradient mb-1 counter" data-target="1">0</h3>
+                            <p class="text-secondary fw-semibold small mt-2 mb-0">PENGHARGAAN</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="portfolio" class="section-padding bg-white border-top border-bottom">
             <div class="container">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
+                <div class="section-header text-center text-md-start d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-4 reveal">
                     <div>
-                        <h2 class="fw-apple-bold display-5 text-dark mb-1">Karya Terbaik.</h2>
-                        <p class="text-secondary fs-5 mb-0">Inovasi digital yang telah diluncurkan.</p>
+                        <h2 class="fw-apple-bold section-title text-dark mb-1">Karya Terbaik.</h2>
+                        <p class="section-subtitle mb-0">Inovasi digital yang telah diluncurkan ke pengguna.</p>
                     </div>
                     
                     <ul class="nav nav-pills modern-tabs" id="portfolioTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="tab-proyek" data-bs-toggle="pill" data-bs-target="#content-proyek" type="button" role="tab">Proyek</button>
+                            <button class="nav-link active" id="tab-proyek" data-bs-toggle="pill" data-bs-target="#content-proyek" type="button" role="tab">
+                                <i class="bi bi-folder-fill me-1"></i> Proyek
+                            </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-sertifikasi" data-bs-toggle="pill" data-bs-target="#content-sertifikasi" type="button" role="tab">Sertifikasi</button>
+                            <button class="nav-link" id="tab-sertifikasi" data-bs-toggle="pill" data-bs-target="#content-sertifikasi" type="button" role="tab">
+                                <i class="bi bi-award-fill me-1"></i> Sertifikasi
+                            </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="tab-teknologi" data-bs-toggle="pill" data-bs-target="#content-teknologi" type="button" role="tab">Teknologi</button>
+                            <button class="nav-link" id="tab-teknologi" data-bs-toggle="pill" data-bs-target="#content-teknologi" type="button" role="tab">
+                                <i class="bi bi-cpu-fill me-1"></i> Teknologi
+                            </button>
                         </li>
                     </ul>
                 </div>
 
                 <div class="tab-content" id="portfolioTabsContent">
-                    
                     <div class="tab-pane fade show active" id="content-proyek" role="tabpanel">
                         <div class="row g-4">
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
                                 <div class="card-modern">
                                     <div class="card-modern-img">
-                                        <div class="card-badge">🏆 2nd Winner TESA 2025</div>
-                                        <img src="https://via.placeholder.com/800x600.png?text=Eco+Verse" alt="Eco Verse">
+                                        <div class="card-badge">
+                                            <i class="bi bi-trophy-fill text-warning"></i> 2nd Winner TESA 2025
+                                        </div>
+                                        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aplikasi Eco Verse" loading="lazy">
                                     </div>
                                     <h4 class="fw-apple-bold text-dark mb-2">Eco Verse</h4>
-                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 15px;">SaaS-Enabled Marketplace untuk manajemen limbah. Menghubungkan interaksi antara warga, kurir, dan bank sampah.</p>
-                                    <div class="d-flex gap-2 flex-wrap mt-auto pt-2">
-                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Play Store</span>
-                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Marketplace</span>
+                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 14px;">SaaS-Enabled Marketplace untuk manajemen limbah cerdas. Menghubungkan warga, kurir, dan bank sampah dalam satu ekosistem.</p>
+                                    <div class="d-flex gap-2 flex-wrap mt-auto">
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2"><i class="bi bi-google-play me-1"></i> Play Store</span>
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2"><i class="bi bi-shop me-1"></i> Marketplace</span>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
                                 <div class="card-modern">
                                     <div class="card-modern-img">
-                                        <img src="https://via.placeholder.com/800x600.png?text=Smile+Advance" alt="Smile Advance">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aplikasi Smile Advance" loading="lazy">
                                     </div>
                                     <h4 class="fw-apple-bold text-dark mb-2">Smile Advance</h4>
-                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 15px;">Aplikasi procurement tingkat korporasi yang terintegrasi langsung dengan SAP. Melibatkan pemetaan data SQL tingkat lanjut.</p>
-                                    <div class="d-flex gap-2 flex-wrap mt-auto pt-2">
-                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Enterprise App</span>
-                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">SAP & SQL</span>
+                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 14px;">Aplikasi procurement enterprise terintegrasi SAP. Melibatkan pemetaan data SQL tingkat lanjut dan rekonsiliasi aset.</p>
+                                    <div class="d-flex gap-2 flex-wrap mt-auto">
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2"><i class="bi bi-building me-1"></i> Enterprise</span>
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2"><i class="bi bi-database me-1"></i> SAP & SQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 reveal reveal-delay-3">
+                                <div class="card-modern">
+                                    <div class="card-modern-img">
+                                        <div class="card-badge" style="background: linear-gradient(135deg, #007aff 0%, #5856d6 100%); color: white;">
+                                            <i class="bi bi-stars"></i> Coming Soon
+                                        </div>
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyek Mendatang" loading="lazy">
+                                    </div>
+                                    <h4 class="fw-apple-bold text-dark mb-2">Next Project</h4>
+                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 14px;">Proyek inovatif berikutnya sedang dalam pengembangan. Nantikan kejutan menarik dari saya.</p>
+                                    <div class="d-flex gap-2 flex-wrap mt-auto">
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2"><i class="bi bi-clock me-1"></i> In Progress</span>
                                     </div>
                                 </div>
                             </div>
@@ -431,19 +408,28 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="card-modern">
                                     <div class="card-modern-img" style="aspect-ratio: 16/10;">
-                                        <img src="https://via.placeholder.com/800x500.png?text=Sertifikat+Frontend" alt="Sertifikat">
+                                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sertifikat Frontend Development" loading="lazy">
                                     </div>
-                                    <h5 class="fw-apple-bold text-dark mb-1">Frontend Development Certificate</h5>
-                                    <p class="text-secondary small mb-0">Diterbitkan oleh: Lembaga IT • 2025</p>
+                                    <h5 class="fw-apple-bold text-dark mb-1">Frontend Development Professional</h5>
+                                    <p class="text-secondary small mb-0"><i class="bi bi-building me-1"></i> Lembaga Sertifikasi IT • 2025</p>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="card-modern">
                                     <div class="card-modern-img" style="aspect-ratio: 16/10;">
-                                        <img src="https://via.placeholder.com/800x500.png?text=Sertifikat+SQL" alt="Sertifikat">
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sertifikat SQL Database" loading="lazy">
                                     </div>
                                     <h5 class="fw-apple-bold text-dark mb-1">Advanced SQL & Database Management</h5>
-                                    <p class="text-secondary small mb-0">Diterbitkan oleh: Data Platform • 2024</p>
+                                    <p class="text-secondary small mb-0"><i class="bi bi-building me-1"></i> Data Platform • 2024</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-modern">
+                                    <div class="card-modern-img" style="aspect-ratio: 16/10;">
+                                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sertifikat UI/UX Design" loading="lazy">
+                                    </div>
+                                    <h5 class="fw-apple-bold text-dark mb-1">UI/UX Design Fundamentals</h5>
+                                    <p class="text-secondary small mb-0"><i class="bi bi-building me-1"></i> Design Academy • 2024</p>
                                 </div>
                             </div>
                         </div>
@@ -451,69 +437,86 @@
 
                     <div class="tab-pane fade" id="content-teknologi" role="tabpanel">
                         <div class="card-modern p-5 text-center">
-                            <h4 class="fw-apple-bold mb-5 text-dark">Alat & Teknologi Utama</h4>
-                            <div class="d-flex flex-wrap justify-content-center gap-5">
+                            <h4 class="fw-apple-bold mb-2 text-dark">Stack Teknologi</h4>
+                            <p class="text-secondary mb-5">Tools dan framework yang saya gunakan untuk membangun produk digital berkualitas.</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-4 gap-md-5">
                                 <div class="text-center">
-                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
-                                        <i class="bi bi-filetype-sql fs-1 text-primary"></i>
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); color: #1976d2;">
+                                        <i class="bi bi-filetype-sql"></i>
                                     </div>
-                                    <span class="fw-semibold text-secondary">SQL</span>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">SQL</span>
                                 </div>
                                 <div class="text-center">
-                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
-                                        <i class="bi bi-filetype-js fs-1 text-warning"></i>
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); color: #f57f17;">
+                                        <i class="bi bi-filetype-js"></i>
                                     </div>
-                                    <span class="fw-semibold text-secondary">JavaScript</span>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">JavaScript</span>
                                 </div>
                                 <div class="text-center">
-                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
-                                        <i class="bi bi-bootstrap fs-1" style="color: #712cf9;"></i>
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); color: #7b1fa2;">
+                                        <i class="bi bi-bootstrap"></i>
                                     </div>
-                                    <span class="fw-semibold text-secondary">Bootstrap 5</span>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">Bootstrap 5</span>
                                 </div>
                                 <div class="text-center">
-                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
-                                        <i class="bi bi-phone fs-1 text-dark"></i>
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); color: #388e3c;">
+                                        <i class="bi bi-phone"></i>
                                     </div>
-                                    <span class="fw-semibold text-secondary">Mobile UI</span>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">Mobile UI</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%); color: #c2185b;">
+                                        <i class="bi bi-git"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">Git</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="tech-icon-box mx-auto" style="background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); color: #00796b;">
+                                        <i class="bi bi-filetype-html"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary" style="font-size: 14px;">HTML/CSS</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
         <section class="py-5" style="background-color: #ffffff;">
             <div class="container">
+                <div class="section-header text-center reveal">
+                    <h2 class="fw-apple-bold section-title text-dark">Nilai Profesional.</h2>
+                    <p class="section-subtitle mx-auto">Standar kerja yang selalu saya pegang teguh dalam setiap proyek.</p>
+                </div>
+                
                 <div class="row g-4">
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-3 reveal reveal-delay-1">
                         <div class="trust-badge-card">
                             <div class="trust-icon"><i class="bi bi-code-slash"></i></div>
-                            <h5 class="fw-bold fs-6 text-dark">Clean Code</h5>
-                            <p class="text-secondary small mb-0">Kode yang rapi, terstruktur, dan mudah dipelihara tim.</p>
+                            <h5 class="fw-bold fs-6 text-dark mb-2">Clean Code</h5>
+                            <p class="text-secondary small mb-0">Kode rapi, terstruktur, dan mudah dipelihara tim.</p>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-3 reveal reveal-delay-2">
                         <div class="trust-badge-card">
                             <div class="trust-icon"><i class="bi bi-stopwatch"></i></div>
-                            <h5 class="fw-bold fs-6 text-dark">Tepat Waktu</h5>
-                            <p class="text-secondary small mb-0">Komitmen tinggi pada timeline proyek dan perilisan.</p>
+                            <h5 class="fw-bold fs-6 text-dark mb-2">Tepat Waktu</h5>
+                            <p class="text-secondary small mb-0">Komitmen pada timeline perilisan proyek.</p>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-3 reveal reveal-delay-3">
                         <div class="trust-badge-card">
                             <div class="trust-icon"><i class="bi bi-shield-check"></i></div>
-                            <h5 class="fw-bold fs-6 text-dark">Sistem Aman</h5>
-                            <p class="text-secondary small mb-0">Mengutamakan integritas dan keamanan data aplikasi.</p>
+                            <h5 class="fw-bold fs-6 text-dark mb-2">Sistem Aman</h5>
+                            <p class="text-secondary small mb-0">Integritas dan keamanan data terjamin.</p>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-3">
+                    <div class="col-6 col-lg-3 reveal reveal-delay-4">
                         <div class="trust-badge-card">
                             <div class="trust-icon"><i class="bi bi-headset"></i></div>
-                            <h5 class="fw-bold fs-6 text-dark">Dukungan Solid</h5>
-                            <p class="text-secondary small mb-0">Responsif dan siap membantu pasca perilisan produk.</p>
+                            <h5 class="fw-bold fs-6 text-dark mb-2">Dukungan Solid</h5>
+                            <p class="text-secondary small mb-0">Responsif membantu pasca perilisan produk.</p>
                         </div>
                     </div>
                 </div>
@@ -523,45 +526,42 @@
         <footer id="contact" class="footer-light">
             <div class="container">
                 <div class="row g-5">
-                    <div class="col-lg-4 pe-lg-5">
+                    <div class="col-lg-4 pe-lg-5 reveal">
                         <h3 class="fw-apple-bold text-gradient mb-3" style="font-size: 28px;">Damar.</h3>
-                        <p class="text-secondary" style="font-size: 15px; line-height: 1.6;">
+                        <p class="text-secondary" style="font-size: 15px; line-height: 1.7;">
                             Frontend Developer & Programmer. Mendesain antarmuka yang indah dan merekayasa sistem yang kompleks untuk kenyamanan harian Anda.
                         </p>
                         <div class="d-flex gap-3 mt-4">
-                            <a href="#" class="text-dark fs-5"><i class="bi bi-github"></i></a>
-                            <a href="#" class="text-dark fs-5"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" class="text-dark fs-5" style="transition: all 0.2s;"><i class="bi bi-github"></i></a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" class="text-dark fs-5" style="transition: all 0.2s;"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Profil Instagram" class="text-dark fs-5" style="transition: all 0.2s;"><i class="bi bi-instagram"></i></a>
+                            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Profil Twitter" class="text-dark fs-5" style="transition: all 0.2s;"><i class="bi bi-twitter-x"></i></a>
                         </div>
                     </div>
-                    
-                    <div class="col-6 col-lg-2">
+                    <div class="col-6 col-lg-2 reveal reveal-delay-1">
                         <div class="footer-title">Navigasi Utama</div>
-                        <a href="#hero" class="footer-link">Beranda</a>
-                        <a href="#spesialisasi" class="footer-link">Spesialisasi</a>
-                        <a href="#portfolio" class="footer-link">Portofolio</a>
+                        <a href="#hero" class="footer-link"><i class="bi bi-house-door me-2"></i>Beranda</a>
+                        <a href="#spesialisasi" class="footer-link"><i class="bi bi-grid me-2"></i>Spesialisasi</a>
+                        <a href="#portfolio" class="footer-link"><i class="bi bi-briefcase me-2"></i>Portofolio</a>
                     </div>
-                    
-                    <div class="col-6 col-lg-2">
+                    <div class="col-6 col-lg-2 reveal reveal-delay-2">
                         <div class="footer-title">Area Keahlian</div>
                         <a href="#" class="footer-link">Frontend Web</a>
                         <a href="#" class="footer-link">Mobile UI/UX</a>
                         <a href="#" class="footer-link">Database (SQL)</a>
                         <a href="#" class="footer-link">Integrasi SAP</a>
                     </div>
-                    
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 reveal reveal-delay-3">
                         <div class="footer-title">Mari Berdiskusi</div>
                         <p class="text-secondary mb-4" style="font-size: 14px;">Tertarik untuk mendiskusikan peluang proyek baru atau posisi teknis? Hubungi saya kapan saja.</p>
                         <div class="d-flex align-items-center border border-secondary border-opacity-25 rounded-pill bg-white overflow-hidden p-1">
-                            <input type="text" value="damar@example.com" class="form-control border-0 bg-transparent shadow-none" readonly>
-                            <a href="mailto:damar@example.com" class="btn btn-dark rounded-pill py-2 px-4" style="font-size: 14px; white-space: nowrap;">
+                            <input type="text" value="damar@example.com" class="form-control border-0 bg-transparent shadow-none" readonly aria-label="Alamat Email" style="font-size: 14px;">
+                            <a href="mailto:damar@example.com" class="btn btn-dark rounded-pill py-2 px-4" style="font-size: 13px; white-space: nowrap;">
                                 <i class="bi bi-send-fill me-1"></i> Email
                             </a>
                         </div>
                     </div>
                 </div>
-                
                 <div class="text-center mt-5 pt-4 border-top border-secondary border-opacity-10">
                     <p class="text-secondary small mb-0">&copy; 2026 Damar. Dirancang dengan presisi & Bootstrap 5.</p>
                 </div>
@@ -570,44 +570,130 @@
 
     </main>
 
+    <button id="backToTop" class="btn-back-to-top" aria-label="Kembali ke atas">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const hero = document.getElementById("hero");
-            
-            // Buat elemen khusus untuk Glow Cursor
-            const cursorGlow = document.createElement("div");
-            cursorGlow.className = "aurora-blob blob-cursor";
-            hero.querySelector(".aurora-hero").appendChild(cursorGlow);
-
-            hero.addEventListener("mousemove", (e) => {
-                // Posisi kursor untuk Glow Indicator
-                const rect = hero.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                cursorGlow.style.opacity = "1";
-                cursorGlow.style.left = `${x}px`;
-                cursorGlow.style.top = `${y}px`;
-
-                // Efek Parallax untuk Aurora Blobs (berlawanan arah kursor)
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-                
-                document.querySelector('.blob-1').style.margin = `${yAxis}px ${xAxis}px`;
-                document.querySelector('.blob-2').style.margin = `${-yAxis}px ${-xAxis}px`;
-                document.querySelector('.blob-3').style.margin = `${yAxis * 0.5}px ${-xAxis * 0.5}px`;
+        // === SCROLL REVEAL USING INTERSECTION OBSERVER ===
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); // STOP OBSERVE UNTUK HEMAT CPU
+                }
             });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
 
-            // Sembunyikan Glow Cursor ketika keluar dari Hero section
-            hero.addEventListener("mouseleave", () => {
-                cursorGlow.style.opacity = "0";
-                document.querySelector('.blob-1').style.margin = "0px";
-                document.querySelector('.blob-2').style.margin = "0px";
-                document.querySelector('.blob-3').style.margin = "0px";
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === COUNTER ANIMATION ===
+        const counters = document.querySelectorAll('.counter');
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000; 
+                    const step = target / (duration / 16); 
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current) + (target > 10 ? '+' : '');
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + (target > 10 ? '+' : '');
+                        }
+                    };
+                    
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // === NAVBAR SCROLL EFFECT ===
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // === BACK TO TOP BUTTON ===
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // === SMOOTH SCROLL FOR ANCHOR LINKS ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
             });
         });
+
+        // === AURORA PARALLAX (DIOPTIMALKAN DENGAN requestAnimationFrame) ===
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+        
+        if (!isTouchDevice) {
+            const hero = document.getElementById('hero');
+            const blobs = document.querySelectorAll('.blob-1, .blob-2, .blob-3, .blob-4');
+            let mouseX = 0;
+            let mouseY = 0;
+            let isMoving = false;
+            
+            hero.addEventListener('mousemove', (e) => {
+                const rect = hero.getBoundingClientRect();
+                mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+                mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+                
+                if (!isMoving) {
+                    isMoving = true;
+                    requestAnimationFrame(updateAuroraPosition);
+                }
+            });
+
+            function updateAuroraPosition() {
+                blobs.forEach((blob, index) => {
+                    const speed = (index + 1) * 15;
+                    blob.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+                });
+                isMoving = false;
+            }
+
+            hero.addEventListener('mouseleave', () => {
+                blobs.forEach(blob => {
+                    blob.style.transform = 'translate(0, 0)';
+                });
+            });
+        }
     </script>
 </body>
 </html>
