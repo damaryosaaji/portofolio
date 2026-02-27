@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damar | Minimalist Developer Portfolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* Tipografi ala Apple */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fbfbfd; 
+            color: #111827; /* Kontras teks utama dipertajam */
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Badge "Ready to Innovate" --- */
+        .badge-innovate {
+            background-color: #f0f5ff;
+            color: #1d4ed8; /* Biru lebih pekat untuk kontras */
+            border: 1px solid #bfdbfe;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); /* Shadow diperjelas */
+        }
+        .badge-innovate .dot-wrapper {
+            width: 18px;
+            height: 18px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .badge-innovate .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #2563eb;
+            border-radius: 50%;
+        }
+
+        /* --- Hero Section & Interactive Aurora --- */
+        #hero { 
+            position: relative; 
+            overflow: hidden; 
+            background: #f0f4f8; /* Background sedikit lebih gelap agar aurora pop-out */
+        }
+        .aurora-hero { 
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; 
+        }
+        .aurora-blob {
+            position: absolute; 
+            filter: blur(65px); /* Blur sedikit dikurangi agar warna lebih pekat */
+            opacity: 0.85; /* Opacity dinaikkan */
+            border-radius: 50%;
+            animation: float 12s infinite ease-in-out alternate;
+            transition: margin 0.3s ease-out; /* Untuk efek parallax */
+        }
+        
+        /* Warna kontras yang lebih jelas */
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #7ba8eb; }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #c59fdf; animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #84ead1; animation-delay: -2s; }
+        
+        /* Cursor Glow khusus (Interactive) */
+        .blob-cursor {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.5) 0%, rgba(0, 122, 255, 0) 70%);
+            filter: blur(40px);
+            transform: translate(-50%, -50%);
+            animation: none; /* Hilangkan float animation */
+            pointer-events: none; /* Tidak menghalangi klik */
+            transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s ease;
+            opacity: 0; /* Tersembunyi sampai kursor masuk */
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Dipertegas */
+        }
+
+        /* Bento Grid (Spesialisasi) */
+        .bento-card {
+            position: relative; border-radius: 28px; overflow: hidden; background-color: #1d1d1f; color: white;
+            transition: transform 0.3s ease; height: 100%; min-height: 250px;
+        }
+        .bento-card:hover { transform: scale(0.98); }
+        .bento-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.6; transition: opacity 0.3s;
+        }
+        .bento-card:hover .bento-bg { opacity: 0.8; }
+        .bento-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px;
+        }
+        .bento-tall { min-height: 520px; }
+
+        /* General iOS Cards */
+        .ios-card {
+            background: #ffffff; border-radius: 24px; border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ios-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); }
+
+        /* Tabs Modern */
+        .modern-tabs {
+            background-color: #f3f4f6;
+            border-radius: 50px;
+            padding: 6px;
+            display: inline-flex;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .modern-tabs .nav-link {
+            color: #4b5563;
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 10px 28px;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+        }
+        .modern-tabs .nav-link:hover { color: #111827; }
+        .modern-tabs .nav-link.active {
+            background-color: #ffffff;
+            color: #111827;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Card Modern untuk Portofolio */
+        .card-modern {
+            background: #ffffff;
+            border-radius: 28px; 
+            padding: 20px; 
+            border: 1px solid rgba(0, 0, 0, 0.06); /* Outline lebih jelas */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* Shadow dipertajam */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+        .card-modern-img {
+            background-color: #f3f4f6;
+            border-radius: 16px; 
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            margin-bottom: 24px;
+        }
+        .card-modern-img img { width: 100%; height: 100%; object-fit: cover; }
+        .card-badge {
+            position: absolute; top: 14px; right: 14px; background: #ffffff;
+            color: #111827; font-weight: 700; font-size: 12px; padding: 6px 14px;
+            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        /* Utilities Umum */
+        .fw-apple-bold { font-weight: 700; letter-spacing: -0.03em; }
+        .text-gradient { background: linear-gradient(135deg, #007aff, #5856d6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-ios-primary { background: #007aff; color: white; border-radius: 100px; padding: 12px 28px; font-weight: 600; border: none; transition: all 0.2s; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3); }
+        .btn-ios-primary:hover { background: #006ce4; color: white; transform: scale(0.98); box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3); }
+        .section-padding { padding-top: 100px; padding-bottom: 100px; }
+        
+        /* Modifikasi text-secondary untuk readibility (kontras dinaikkan) */
+        .text-secondary { color: #4b5563 !important; }
+
+        /* Pre-Footer Trust Badges */
+        .trust-badge-card { background: #ffffff; border-radius: 20px; padding: 30px 20px; text-align: center; border: 1px solid rgba(0,0,0,0.06); height: 100%; transition: box-shadow 0.3s;}
+        .trust-badge-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .trust-icon { width: 50px; height: 50px; background: #f5f5f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; font-size: 20px; color: #111827; }
+
+        /* Footer */
+        .footer-light { background-color: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.06); padding: 80px 0 40px 0; }
+        .footer-link { color: #4b5563; text-decoration: none; display: block; margin-bottom: 12px; font-weight: 500; transition: color 0.2s; }
+        .footer-link:hover { color: #007aff; }
+        .footer-title { color: #111827; font-weight: 700; margin-bottom: 24px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3">
+        <div class="container">
+            <a class="navbar-brand fw-apple-bold fs-4 text-gradient" href="#">Damar.</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-3 fw-medium">
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#hero">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#spesialisasi">Spesialisasi</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#portfolio">Portofolio</a></li>
+                    <li class="nav-item ms-lg-3"><a href="#contact" class="btn-ios-primary text-decoration-none py-2 px-4" style="font-size: 14px;">Hire Me</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="d-flex align-items-center min-vh-100 pt-5">
+        <div class="aurora-hero">
+            <div class="aurora-blob blob-1"></div>
+            <div class="aurora-blob blob-2"></div>
+            <div class="aurora-blob blob-3"></div>
+        </div>
+
+        <div class="container position-relative z-1">
+            <div class="row align-items-center flex-column-reverse flex-lg-row g-5">
+                <div class="col-lg-7 text-center text-lg-start pt-4 pt-lg-0">
+                    <div class="badge-innovate mb-4">
+                        <div class="dot-wrapper">
+                            <div class="dot"></div>
+                        </div>
+                        Ready to Innovate
+                    </div>
+                    
+                    <h1 class="fw-apple-bold display-3 mb-4 lh-sm">
+                        Membangun <br />
+                        <span class="text-gradient">Aplikasi Nyata</span> <br />
+                        Berkinerja Tinggi.
+                    </h1>
+                    <p class="lead text-secondary mb-5 fw-medium" style="max-width: 500px; margin: 0 auto 0 0;">
+                        Frontend Developer dan Project Leader yang merancang antarmuka presisi dan mengintegrasikan sistem kompleks menjadi produk digital yang mulus.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#portfolio" class="btn-ios-primary text-decoration-none">Eksplorasi Karya</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="glass-panel p-2 mx-auto shadow-lg" style="max-width: 380px;">
+                        <div class="rounded-4 overflow-hidden" style="aspect-ratio: 4/5; background-color: #e5e5ea;">
+                            <img src="https://via.placeholder.com/600x800.png?text=Foto+Profil" alt="Damar Profile" class="w-100 h-100" style="object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="position-relative z-2" style="background-color: #fbfbfd; border-top: 1px solid rgba(0,0,0,0.05);">
+
+        <section id="spesialisasi" class="section-padding pb-4">
+            <div class="container">
+                <div class="mb-5 text-center text-md-start">
+                    <h2 class="fw-apple-bold display-5 text-dark text-uppercase">DIBANGUN UNTUK <span style="color: #6b7280;">PERFORMA</span></h2>
+                    <p class="text-secondary fs-5 mt-2">Area spesialisasi yang telah terbukti di berbagai proyek.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="bento-card shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Dev" class="bento-bg">
+                                    <div class="bento-overlay">
+                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Frontend Web</h3>
+                                        <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Antarmuka yang bersih, responsif, dan dioptimalkan untuk kecepatan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="bento-card shadow-sm">
+                                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile Dev" class="bento-bg">
+                                    <div class="bento-overlay">
+                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Mobile Apps</h3>
+                                        <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Pengalaman mobile-first. Nyaman digenggam, andal di segala kondisi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="bento-card shadow-sm" style="min-height: 280px;">
+                                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Enterprise" class="bento-bg">
+                                    <div class="bento-overlay">
+                                        <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Enterprise Integration</h3>
+                                        <p class="text-light mb-0 max-w-md" style="font-size: 15px; opacity: 0.95;">Penguasaan logika kompleks, database SQL, dan integrasi SAP.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        <div class="bento-card bento-tall shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leadership" class="bento-bg">
+                            <div class="bento-overlay">
+                                <h3 class="fw-apple-bold text-white mb-2 h4 text-uppercase">Project Leadership</h3>
+                                <p class="text-light mb-0" style="font-size: 15px; opacity: 0.95;">Memimpin siklus penuh proyek dari arsitektur hingga rilis ke pengguna.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-5">
+            <div class="container">
+                <div class="row g-4 text-center">
+                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">3+</h3><p class="text-secondary fw-bold small mt-2 mb-0">TAHUN PENGALAMAN</p></div></div>
+                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">11</h3><p class="text-secondary fw-bold small mt-2 mb-0">PROYEK SELESAI</p></div></div>
+                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">7</h3><p class="text-secondary fw-bold small mt-2 mb-0">SERTIFIKAT IT</p></div></div>
+                    <div class="col-6 col-md-3"><div class="ios-card p-4"><h3 class="display-5 fw-apple-bold text-gradient mb-0">1</h3><p class="text-secondary fw-bold small mt-2 mb-0">PENGHARGAAN</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section-padding bg-white border-top border-bottom">
+            <div class="container">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
+                    <div>
+                        <h2 class="fw-apple-bold display-5 text-dark mb-1">Karya Terbaik.</h2>
+                        <p class="text-secondary fs-5 mb-0">Inovasi digital yang telah diluncurkan.</p>
+                    </div>
+                    
+                    <ul class="nav nav-pills modern-tabs" id="portfolioTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="tab-proyek" data-bs-toggle="pill" data-bs-target="#content-proyek" type="button" role="tab">Proyek</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-sertifikasi" data-bs-toggle="pill" data-bs-target="#content-sertifikasi" type="button" role="tab">Sertifikasi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-teknologi" data-bs-toggle="pill" data-bs-target="#content-teknologi" type="button" role="tab">Teknologi</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="portfolioTabsContent">
+                    
+                    <div class="tab-pane fade show active" id="content-proyek" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-modern">
+                                    <div class="card-modern-img">
+                                        <div class="card-badge">🏆 2nd Winner TESA 2025</div>
+                                        <img src="https://via.placeholder.com/800x600.png?text=Eco+Verse" alt="Eco Verse">
+                                    </div>
+                                    <h4 class="fw-apple-bold text-dark mb-2">Eco Verse</h4>
+                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 15px;">SaaS-Enabled Marketplace untuk manajemen limbah. Menghubungkan interaksi antara warga, kurir, dan bank sampah.</p>
+                                    <div class="d-flex gap-2 flex-wrap mt-auto pt-2">
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Play Store</span>
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Marketplace</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-modern">
+                                    <div class="card-modern-img">
+                                        <img src="https://via.placeholder.com/800x600.png?text=Smile+Advance" alt="Smile Advance">
+                                    </div>
+                                    <h4 class="fw-apple-bold text-dark mb-2">Smile Advance</h4>
+                                    <p class="text-secondary mb-4 flex-grow-1" style="font-size: 15px;">Aplikasi procurement tingkat korporasi yang terintegrasi langsung dengan SAP. Melibatkan pemetaan data SQL tingkat lanjut.</p>
+                                    <div class="d-flex gap-2 flex-wrap mt-auto pt-2">
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">Enterprise App</span>
+                                        <span class="badge bg-light text-secondary border rounded-pill fw-medium px-3 py-2">SAP & SQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="content-sertifikasi" role="tabpanel">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-modern">
+                                    <div class="card-modern-img" style="aspect-ratio: 16/10;">
+                                        <img src="https://via.placeholder.com/800x500.png?text=Sertifikat+Frontend" alt="Sertifikat">
+                                    </div>
+                                    <h5 class="fw-apple-bold text-dark mb-1">Frontend Development Certificate</h5>
+                                    <p class="text-secondary small mb-0">Diterbitkan oleh: Lembaga IT • 2025</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card-modern">
+                                    <div class="card-modern-img" style="aspect-ratio: 16/10;">
+                                        <img src="https://via.placeholder.com/800x500.png?text=Sertifikat+SQL" alt="Sertifikat">
+                                    </div>
+                                    <h5 class="fw-apple-bold text-dark mb-1">Advanced SQL & Database Management</h5>
+                                    <p class="text-secondary small mb-0">Diterbitkan oleh: Data Platform • 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="content-teknologi" role="tabpanel">
+                        <div class="card-modern p-5 text-center">
+                            <h4 class="fw-apple-bold mb-5 text-dark">Alat & Teknologi Utama</h4>
+                            <div class="d-flex flex-wrap justify-content-center gap-5">
+                                <div class="text-center">
+                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
+                                        <i class="bi bi-filetype-sql fs-1 text-primary"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary">SQL</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
+                                        <i class="bi bi-filetype-js fs-1 text-warning"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary">JavaScript</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
+                                        <i class="bi bi-bootstrap fs-1" style="color: #712cf9;"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary">Bootstrap 5</span>
+                                </div>
+                                <div class="text-center">
+                                    <div class="rounded-4 bg-light border d-flex align-items-center justify-content-center mb-3 shadow-sm mx-auto" style="width: 80px; height: 80px;">
+                                        <i class="bi bi-phone fs-1 text-dark"></i>
+                                    </div>
+                                    <span class="fw-semibold text-secondary">Mobile UI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5" style="background-color: #ffffff;">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-badge-card">
+                            <div class="trust-icon"><i class="bi bi-code-slash"></i></div>
+                            <h5 class="fw-bold fs-6 text-dark">Clean Code</h5>
+                            <p class="text-secondary small mb-0">Kode yang rapi, terstruktur, dan mudah dipelihara tim.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-badge-card">
+                            <div class="trust-icon"><i class="bi bi-stopwatch"></i></div>
+                            <h5 class="fw-bold fs-6 text-dark">Tepat Waktu</h5>
+                            <p class="text-secondary small mb-0">Komitmen tinggi pada timeline proyek dan perilisan.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-badge-card">
+                            <div class="trust-icon"><i class="bi bi-shield-check"></i></div>
+                            <h5 class="fw-bold fs-6 text-dark">Sistem Aman</h5>
+                            <p class="text-secondary small mb-0">Mengutamakan integritas dan keamanan data aplikasi.</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-badge-card">
+                            <div class="trust-icon"><i class="bi bi-headset"></i></div>
+                            <h5 class="fw-bold fs-6 text-dark">Dukungan Solid</h5>
+                            <p class="text-secondary small mb-0">Responsif dan siap membantu pasca perilisan produk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="footer-light">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-4 pe-lg-5">
+                        <h3 class="fw-apple-bold text-gradient mb-3" style="font-size: 28px;">Damar.</h3>
+                        <p class="text-secondary" style="font-size: 15px; line-height: 1.6;">
+                            Frontend Developer & Programmer. Mendesain antarmuka yang indah dan merekayasa sistem yang kompleks untuk kenyamanan harian Anda.
+                        </p>
+                        <div class="d-flex gap-3 mt-4">
+                            <a href="#" class="text-dark fs-5"><i class="bi bi-github"></i></a>
+                            <a href="#" class="text-dark fs-5"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-dark fs-5"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6 col-lg-2">
+                        <div class="footer-title">Navigasi Utama</div>
+                        <a href="#hero" class="footer-link">Beranda</a>
+                        <a href="#spesialisasi" class="footer-link">Spesialisasi</a>
+                        <a href="#portfolio" class="footer-link">Portofolio</a>
+                    </div>
+                    
+                    <div class="col-6 col-lg-2">
+                        <div class="footer-title">Area Keahlian</div>
+                        <a href="#" class="footer-link">Frontend Web</a>
+                        <a href="#" class="footer-link">Mobile UI/UX</a>
+                        <a href="#" class="footer-link">Database (SQL)</a>
+                        <a href="#" class="footer-link">Integrasi SAP</a>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="footer-title">Mari Berdiskusi</div>
+                        <p class="text-secondary mb-4" style="font-size: 14px;">Tertarik untuk mendiskusikan peluang proyek baru atau posisi teknis? Hubungi saya kapan saja.</p>
+                        <div class="d-flex align-items-center border border-secondary border-opacity-25 rounded-pill bg-white overflow-hidden p-1">
+                            <input type="text" value="damar@example.com" class="form-control border-0 bg-transparent shadow-none" readonly>
+                            <a href="mailto:damar@example.com" class="btn btn-dark rounded-pill py-2 px-4" style="font-size: 14px; white-space: nowrap;">
+                                <i class="bi bi-send-fill me-1"></i> Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5 pt-4 border-top border-secondary border-opacity-10">
+                    <p class="text-secondary small mb-0">&copy; 2026 Damar. Dirancang dengan presisi & Bootstrap 5.</p>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const hero = document.getElementById("hero");
+            
+            // Buat elemen khusus untuk Glow Cursor
+            const cursorGlow = document.createElement("div");
+            cursorGlow.className = "aurora-blob blob-cursor";
+            hero.querySelector(".aurora-hero").appendChild(cursorGlow);
+
+            hero.addEventListener("mousemove", (e) => {
+                // Posisi kursor untuk Glow Indicator
+                const rect = hero.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                cursorGlow.style.opacity = "1";
+                cursorGlow.style.left = `${x}px`;
+                cursorGlow.style.top = `${y}px`;
+
+                // Efek Parallax untuk Aurora Blobs (berlawanan arah kursor)
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+                
+                document.querySelector('.blob-1').style.margin = `${yAxis}px ${xAxis}px`;
+                document.querySelector('.blob-2').style.margin = `${-yAxis}px ${-xAxis}px`;
+                document.querySelector('.blob-3').style.margin = `${yAxis * 0.5}px ${-xAxis * 0.5}px`;
+            });
+
+            // Sembunyikan Glow Cursor ketika keluar dari Hero section
+            hero.addEventListener("mouseleave", () => {
+                cursorGlow.style.opacity = "0";
+                document.querySelector('.blob-1').style.margin = "0px";
+                document.querySelector('.blob-2').style.margin = "0px";
+                document.querySelector('.blob-3').style.margin = "0px";
+            });
+        });
+    </script>
+</body>
+</html>
