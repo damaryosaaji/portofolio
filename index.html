@@ -13,14 +13,14 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #fbfbfd; 
-            color: #111827; /* Kontras teks utama dipertajam */
+            color: #111827;
             overflow-x: hidden;
         }
 
         /* --- Custom Badge "Ready to Innovate" --- */
         .badge-innovate {
             background-color: #f0f5ff;
-            color: #1d4ed8; /* Biru lebih pekat untuk kontras */
+            color: #1d4ed8;
             border: 1px solid #bfdbfe;
             border-radius: 50px;
             display: inline-flex;
@@ -29,7 +29,7 @@
             padding: 8px 20px;
             font-size: 15px;
             font-weight: 700;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08); /* Shadow diperjelas */
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
         }
         .badge-innovate .dot-wrapper {
             width: 18px;
@@ -40,62 +40,84 @@
             align-items: center;
             justify-content: center;
         }
+
+        /* Animasi Pulse untuk Dot */
+        @keyframes pulse-dot {
+            0% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
+            100% { transform: scale(0.85); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
         .badge-innovate .dot {
             width: 10px;
             height: 10px;
             background-color: #2563eb;
             border-radius: 50%;
+            animation: pulse-dot 2s infinite; /* Dot dibuat pulse */
         }
 
         /* --- Hero Section & Interactive Aurora --- */
         #hero { 
             position: relative; 
             overflow: hidden; 
-            background: #f0f4f8; /* Background sedikit lebih gelap agar aurora pop-out */
+            background: #f0f4f8;
         }
         .aurora-hero { 
             position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; 
         }
+        
+        /* Animasi Gerakan Aurora yang Lebih Dinamis */
+        @keyframes moveAurora {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(10%, 10%); }
+            50% { transform: translate(-5%, 15%); }
+            75% { transform: translate(-10%, -5%); }
+            100% { transform: translate(5%, -10%); }
+        }
+
         .aurora-blob {
             position: absolute; 
-            filter: blur(65px); /* Blur sedikit dikurangi agar warna lebih pekat */
-            opacity: 0.85; /* Opacity dinaikkan */
+            filter: blur(65px);
+            opacity: 0.85;
             border-radius: 50%;
-            animation: float 12s infinite ease-in-out alternate;
-            transition: margin 0.3s ease-out; /* Untuk efek parallax */
+            transition: margin 0.3s ease-out;
         }
         
-        /* Warna kontras yang lebih jelas */
-        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #7ba8eb; }
-        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #c59fdf; animation-delay: -5s; }
-        .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #84ead1; animation-delay: -2s; }
+        .blob-1 { 
+            top: -10%; left: -10%; width: 50vw; height: 50vw; background: #7ba8eb; 
+            animation: moveAurora 5s infinite alternate; /* Gerakan lambat dan halus */
+        }
+        .blob-2 { 
+            bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #cf9fdf; 
+            animation: moveAurora 10s infinite alternate-reverse; /* Gerakan berbeda arah */
+            animation-delay: -5s;
+        }
+        .blob-3 { 
+            top: 40%; left: 30%; width: 40vw; height: 40vw; background: #84ead1; 
+            animation: moveAurora 15s infinite alternate;
+            animation-delay: -10s; 
+        }
         
-        /* Cursor Glow khusus (Interactive) */
         .blob-cursor {
             width: 350px; height: 350px;
             background: radial-gradient(circle, rgba(0, 122, 255, 0.5) 0%, rgba(0, 122, 255, 0) 70%);
             filter: blur(40px);
             transform: translate(-50%, -50%);
-            animation: none; /* Hilangkan float animation */
-            pointer-events: none; /* Tidak menghalangi klik */
+            animation: none;
+            pointer-events: none;
             transition: left 0.15s ease-out, top 0.15s ease-out, opacity 0.3s ease;
-            opacity: 0; /* Tersembunyi sampai kursor masuk */
+            opacity: 0;
             z-index: 1;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 50px) scale(1.1); }
         }
 
         /* Glassmorphism Navbar */
         .navbar-glass {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Dipertegas */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
-        /* Bento Grid (Spesialisasi) */
+        /* Bento Grid */
         .bento-card {
             position: relative; border-radius: 28px; overflow: hidden; background-color: #1d1d1f; color: white;
             transition: transform 0.3s ease; height: 100%; min-height: 250px;
@@ -144,13 +166,13 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
-        /* Card Modern untuk Portofolio */
+        /* Card Modern */
         .card-modern {
             background: #ffffff;
             border-radius: 28px; 
             padding: 20px; 
-            border: 1px solid rgba(0, 0, 0, 0.06); /* Outline lebih jelas */
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* Shadow dipertajam */
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
@@ -182,14 +204,41 @@
         .btn-ios-primary { background: #007aff; color: white; border-radius: 100px; padding: 12px 28px; font-weight: 600; border: none; transition: all 0.2s; box-shadow: 0 4px 14px rgba(0, 122, 255, 0.3); }
         .btn-ios-primary:hover { background: #006ce4; color: white; transform: scale(0.98); box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3); }
         .section-padding { padding-top: 100px; padding-bottom: 100px; }
-        
-        /* Modifikasi text-secondary untuk readibility (kontras dinaikkan) */
         .text-secondary { color: #4b5563 !important; }
 
-        /* Pre-Footer Trust Badges */
-        .trust-badge-card { background: #ffffff; border-radius: 20px; padding: 30px 20px; text-align: center; border: 1px solid rgba(0,0,0,0.06); height: 100%; transition: box-shadow 0.3s;}
-        .trust-badge-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .trust-icon { width: 50px; height: 50px; background: #f5f5f7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; font-size: 20px; color: #111827; }
+        /* --- Hover Interaktif pada Pre-Footer Trust Badges --- */
+        .trust-badge-card { 
+            background: #ffffff; 
+            border-radius: 20px; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border: 1px solid rgba(0,0,0,0.06); 
+            height: 100%; 
+            transition: all 0.3s ease; /* Transisi diperhalus untuk transform */
+        }
+        .trust-badge-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.08); 
+            border-color: rgba(0, 122, 255, 0.2);
+        }
+        .trust-icon { 
+            width: 50px; 
+            height: 50px; 
+            background: #f0f5ff; /* Warna diubah sedikit agar sinkron dengan brand */
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin: 0 auto 15px auto; 
+            font-size: 20px; 
+            color: #007aff; 
+            transition: all 0.3s ease;
+        }
+        .trust-badge-card:hover .trust-icon {
+            background: #007aff;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
 
         /* Footer */
         .footer-light { background-color: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.06); padding: 80px 0 40px 0; }
@@ -247,8 +296,8 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <div class="glass-panel p-2 mx-auto shadow-lg" style="max-width: 380px;">
-                        <div class="rounded-4 overflow-hidden" style="aspect-ratio: 4/5; background-color: #e5e5ea;">
+                    <div class="glass-panel p-2 mx-auto shadow-lg bg-white" style="max-width: 380px; border-radius: 2rem;">
+                        <div class="overflow-hidden" style="border-radius: 1.5rem; aspect-ratio: 4/5; background-color: #e5e5ea;">
                             <img src="https://via.placeholder.com/600x800.png?text=Foto+Profil" alt="Damar Profile" class="w-100 h-100" style="object-fit: cover;">
                         </div>
                     </div>
