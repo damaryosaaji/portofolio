@@ -1,4 +1,4 @@
-# 👨‍💻 Damar - Clean Portfolio
+# 👨‍💻 Clean Portfolio
 
 Sebuah website portofolio pribadi satu halaman (*single-page*) yang dirancang dengan estetika modern, bersih, dan terinspirasi dari antarmuka iOS (Apple Design Guidelines).
 
