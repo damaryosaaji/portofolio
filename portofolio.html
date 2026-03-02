@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Damar - Frontend Developer</title>
+    <meta name="description"
+        content="Explore my complete portfolio of web development, mobile apps, and enterprise solutions.">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #007aff;
+            --primary-purple: #5856d6;
+            --accent-green: #34c759;
+            --bg-light: #fbfbfd;
+            --text-dark: #111827;
+            --text-secondary: #4b5563;
+            --border-light: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .material-symbols-rounded {
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        /* === NAVBAR === */
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-glass.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* === BUTTONS === */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: #ffffff !important;
+            border-radius: 100px;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(88, 86, 214, 0.35);
+        }
+
+        /* === HEADER SECTION === */
+        .page-header {
+            padding: 120px 0 60px;
+            background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        /* === FILTER & SEARCH === */
+        .filter-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-light);
+            margin-bottom: 40px;
+            position: sticky;
+            top: 90px;
+            z-index: 10;
+        }
+
+        .search-input {
+            border-radius: 50px;
+            padding: 12px 20px 12px 45px;
+            background-color: #f3f4f6;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            background-color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .filter-btn {
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-dark);
+            background: #f3f4f6;
+        }
+
+        .filter-btn.active {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        /* === CARDS === */
+        .card-modern {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-modern-img {
+            background-color: #f3f4f6;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/3;
+            margin-bottom: 20px;
+        }
+
+        .card-modern-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card-modern:hover .card-modern-img img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            z-index: 2;
+        }
+
+        .tech-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* === FOOTER === */
+        .footer-light {
+            background: linear-gradient(180deg, #f5f5f7 0%, #f0f0f2 100%);
+            border-top: 1px solid var(--border-light);
+            padding: 60px 0 30px 0;
+            margin-top: 80px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3" id="navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html"
+                style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Damar.</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-3 fw-medium">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="portofolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#process">Process</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item ms-lg-2"><a href="index.html#contact"
+                            class="btn-gradient text-decoration-none py-2 px-4" style="font-size: 14px;"><span
+                                class="material-symbols-rounded" style="font-size: 18px;">calendar_month</span> Book
+                            Call</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fw-bold display-5 mb-3" style="letter-spacing: -0.03em;">All Projects</h1>
+            <p class="text-secondary mx-auto" style="max-width: 600px; font-size: 1.1rem;">A comprehensive showcase of
+                my work in frontend, mobile, and enterprise development.</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container py-5">
+
+        <!-- SEARCH & FILTER -->
+        <div class="filter-controls">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-4">
+                    <div class="position-relative">
+                        <span class="material-symbols-rounded search-icon">search</span>
+                        <input type="text" id="searchInput" class="form-control search-input"
+                            placeholder="Search by name, tech, or role...">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="filterContainer">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="web">Web Application</button>
+                        <button class="filter-btn" data-filter="mobile">Mobile App</button>
+                        <button class="filter-btn" data-filter="enterprise">Enterprise/SAP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NO RESULTS STATE -->
+        <div id="noResults" class="text-center py-5" style="display: none;">
+            <span class="material-symbols-rounded text-secondary mb-3"
+                style="font-size: 64px; opacity: 0.5;">search_off</span>
+            <h4 class="fw-bold text-dark">No projects found</h4>
+            <p class="text-secondary">Try adjusting your search or filter criteria.</p>
+            <button class="btn btn-outline-dark rounded-pill px-4 mt-2"
+                onclick="$('#searchInput').val(''); $('.filter-btn[data-filter=\'all\']').click();">Clear
+                Filters</button>
+        </div>
+
+        <!-- PORTFOLIO GRID -->
+        <div class="row g-4" id="portfolioGrid">
+            <!-- Items injected by jQuery -->
+        </div>
+
+        <!-- CERTIFICATES -->
+        <div class="mt-5 pt-5 border-top">
+            <div class="text-center mb-5 mt-3">
+                <h3 class="fw-bold text-dark mb-2">Certifications</h3>
+                <p class="text-secondary">Continuous learning and professional validations.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-modern">
+                        <div class="card-modern-img" style="aspect-ratio: 16/10;"><img
+                                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Sertifikat" loading="lazy"></div>
+                        <h5 class="fw-bold text-dark mb-1">Frontend Professional</h5>
+                        <p class="text-secondary small mb-0 d-flex align-items-center"><span
+                                class="material-symbols-rounded me-1" style="font-size: 16px;">verified</span>
+                            IT Corp • 2025</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-modern">
+                        <div class="card-modern-img" style="aspect-ratio: 16/10;"><img
+                                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Sertifikat" loading="lazy"></div>
+                        <h5 class="fw-bold text-dark mb-1">Advanced SQL & Database</h5>
+                        <p class="text-secondary small mb-0 d-flex align-items-center"><span
+                                class="material-symbols-rounded me-1" style="font-size: 16px;">verified</span>
+                            Data Platform • 2024</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-modern">
+                        <div class="card-modern-img" style="aspect-ratio: 16/10;"><img
+                                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                alt="Sertifikat" loading="lazy"></div>
+                        <h5 class="fw-bold text-dark mb-1">UI/UX Design Fundamentals</h5>
+                        <p class="text-secondary small mb-0 d-flex align-items-center"><span
+                                class="material-symbols-rounded me-1" style="font-size: 16px;">verified</span>
+                            Design Academy • 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECH STACK -->
+        <div class="mt-5 pt-5 border-top mb-4">
+            <div class="text-center mb-5 mt-3">
+                <h3 class="fw-bold text-dark mb-2">Comprehensive Tech Stack</h3>
+                <p class="text-secondary">The tools, frameworks, and databases I master to build scalable applications.
+                </p>
+            </div>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-10 col-lg-4">
+                    <div class="card-modern p-4" style="border-radius: 20px;">
+                        <div class="d-flex align-items-center justify-content-center gap-2 mb-4">
+                            <span class="material-symbols-rounded text-primary fs-3">devices</span>
+                            <h5 class="fw-bold mb-0">Frontend</h5>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e3f2fd; color: #1976d2; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">html</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">HTML/CSS</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #fff8e1; color: #f57f17; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">javascript</span>
+                                </div><span class="text-secondary fw-semibold"
+                                    style="font-size: 13px;">JavaScript</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e0f7fa; color: #00838f; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">code_blocks</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">React.js</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #f3e5f5; color: #7b1fa2; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">web</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">Bootstrap
+                                    5</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e8eaf6; color: #00acc1; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">palette</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-lg-4">
+                    <div class="card-modern p-4" style="border-radius: 20px;">
+                        <div class="d-flex align-items-center justify-content-center gap-2 mb-4">
+                            <span class="material-symbols-rounded text-success fs-3">dns</span>
+                            <h5 class="fw-bold mb-0">Backend & API</h5>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e8f5e9; color: #388e3c; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">terminal</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">Node.js</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #ede7f6; color: #3949ab; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">api</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">REST
+                                    APIs</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #ffebee; color: #e53935; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">integration_instructions</span>
+                                </div>
+                                <span class="text-secondary fw-semibold" style="font-size: 13px;">Laravel</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e1f5fe; color: #0288d1; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">php</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">PHP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-lg-4">
+                    <div class="card-modern p-4" style="border-radius: 20px;">
+                        <div class="d-flex align-items-center justify-content-center gap-2 mb-4">
+                            <span class="material-symbols-rounded text-warning fs-3">build</span>
+                            <h5 class="fw-bold mb-0">Tools & DB</h5>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #fff3e0; color: #f57c00; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">database</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">SQL
+                                    Server</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e8eaf6; color: #3f51b5; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">dataset</span>
+                                </div><span class="text-secondary fw-semibold"
+                                    style="font-size: 13px;">PostgreSQL</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #fce4ec; color: #c2185b; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">account_tree</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">Git /
+                                    VCS</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="tech-icon-box mx-auto"
+                                    style="background: #e0f2f1; color: #00796b; width: 64px; height: 64px;">
+                                    <span class="material-symbols-rounded">domain</span>
+                                </div><span class="text-secondary fw-semibold" style="font-size: 13px;">SAP
+                                    Systems</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-light">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 pe-lg-4">
+                    <h3 class="fw-bold mb-3"
+                        style="font-size: 28px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Damar.</h3>
+                    <p class="text-secondary" style="font-size: 15px; line-height: 1.7;">
+                        Frontend Developer & Project Leader helping businesses build digital products that scale.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" target="_blank" aria-label="GitHub"
+                            class="text-dark fs-5 transition-all opacity-75 hover-opacity-100"><i
+                                class="bi bi-github"></i></a>
+                        <a href="#" target="_blank" aria-label="LinkedIn"
+                            class="text-dark fs-5 transition-all opacity-75 hover-opacity-100"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" aria-label="Instagram"
+                            class="text-dark fs-5 transition-all opacity-75 hover-opacity-100"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="X / Twitter"
+                            class="text-dark fs-5 transition-all opacity-75 hover-opacity-100"><i
+                                class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Navigation</div>
+                    <a href="index.html#hero" class="footer-link"><span class="material-symbols-rounded me-2"
+                            style="font-size: 18px;">home</span> Home</a>
+                    <a href="index.html#about" class="footer-link"><span class="material-symbols-rounded me-2"
+                            style="font-size: 18px;">grid_view</span> Specialization</a>
+                    <a href="portofolio.html" class="footer-link"><span class="material-symbols-rounded me-2"
+                            style="font-size: 18px;">work</span> Portfolio</a>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <div class="footer-title">Services</div>
+                    <a href="#" class="footer-link">Frontend Web</a>
+                    <a href="#" class="footer-link">Mobile UI/UX</a>
+                    <a href="#" class="footer-link">Database (SQL)</a>
+                    <a href="#" class="footer-link">SAP Integration</a>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="footer-title">Get in Touch</div>
+                    <p class="text-secondary mb-4" style="font-size: 14px;">Available for freelance projects and
+                        full-time opportunities.</p>
+                    <div
+                        class="d-flex align-items-center border border-secondary border-opacity-25 rounded-pill bg-white overflow-hidden p-1 shadow-sm">
+                        <span class="material-symbols-rounded text-secondary ms-3" style="font-size: 18px;">mail</span>
+                        <input type="text" value="damar@example.com"
+                            class="form-control border-0 bg-transparent shadow-none text-dark" readonly
+                            aria-label="Email" style="font-size: 14px;">
+                        <a href="mailto:damar@example.com" class="btn btn-dark rounded-pill py-2 px-4"
+                            style="font-size: 13px; white-space: nowrap; font-weight: 600;">
+                            Email Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 pt-4 border-top">
+                <p class="text-secondary small mb-0">&copy; 2026 Damar. Built with passion & precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Project Database (Simulated data)
+        const projects = [
+            {
+                id: "ecoverse",
+                title: "Eco Verse",
+                category: "mobile",
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "2nd Winner TESA",
+                desc: "SaaS-Enabled Marketplace untuk manajemen limbah cerdas. Menghubungkan warga, kurir, dan bank sampah.",
+                tech: ["React Native", "Node.js", "Firebase"]
+            },
+            {
+                id: "smileadvance",
+                title: "Smile Advance",
+                category: "enterprise",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "Enterprise",
+                desc: "Aplikasi procurement enterprise terintegrasi SAP. Melibatkan pemetaan data SQL tingkat lanjut.",
+                tech: ["React", "PostgreSQL", "SAP API"]
+            },
+            {
+                id: "fintechdash",
+                title: "Fintech Dashboard",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "UI/UX",
+                desc: "Dashboard analitik keuangan real-time dengan visualisasi d3.js yang kompleks dan integrasi API perbankan.",
+                tech: ["Vue.js", "TailwindCSS", "D3.js"]
+            },
+            {
+                id: "medicare",
+                title: "MediCare Booking App",
+                category: "mobile",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "Top Downloaded",
+                desc: "Aplikasi pemesanan jadwal dokter dan teledokter dengan video call terintegrasi (WebRTC).",
+                tech: ["Flutter", "WebRTC", "Laravel"]
+            },
+            {
+                id: "hrissystem",
+                title: "HRIS Portal",
+                category: "enterprise",
+                image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "Internal Tool",
+                desc: "Portal internal karyawan untuk absensi, pengajuan cuti, dan manajemen kalender perusahaan berbasis cloud.",
+                tech: ["Angular", "Azure", "SQL Server"]
+            },
+            {
+                id: "ecommerce",
+                title: "Fashion E-commerce",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                badge: "High Conversion",
+                desc: "Toko online pakaian premium dengan headless CMS (Shopify) dan integrasi payment gateway (Midtrans).",
+                tech: ["Next.js", "Shopify API", "Stripe"]
+            }
+        ];
+
+        $(document).ready(function () {
+            // Navbar scroll
+            $(window).on('scroll', function () {
+                if ($(this).scrollTop() > 20) {
+                    $('#navbar').addClass('scrolled');
+                } else {
+                    $('#navbar').removeClass('scrolled');
+                }
+            });
+
+            // Render Function
+            function renderProjects(data) {
+                const $grid = $('#portfolioGrid');
+                $grid.empty();
+
+                if (data.length === 0) {
+                    $('#noResults').show();
+                    return;
+                }
+
+                $('#noResults').hide();
+
+                data.forEach((p, index) => {
+                    const delay = index * 0.1; // Staggered animation effect
+                    const techBadges = p.tech.map(t => `<span class="badge bg-light text-secondary border rounded-pill me-1 mb-1 px-2 fw-medium">${t}</span>`).join('');
+
+                    const cardHtml = `
+                        <div class="col-md-6 col-lg-4" style="animation: fadeUp 0.6s ease ${delay}s both;">
+                            <a href="detailporto.html?id=${p.id}" class="card-modern">
+                                <div class="card-modern-img">
+                                    <div class="card-badge"><span class="material-symbols-rounded me-1" style="font-size: 14px;">stars</span> ${p.badge}</div>
+                                    <img src="${p.image}" alt="${p.title}" loading="lazy">
+                                </div>
+                                <h4 class="fw-bold text-dark mb-2">${p.title}</h4>
+                                <p class="text-secondary mb-3 flex-grow-1" style="font-size: 14px;">${p.desc}</p>
+                                <div class="mt-auto">
+                                    ${techBadges}
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                    $grid.append(cardHtml);
+                });
+            }
+
+            // Initial Render
+            renderProjects(projects);
+
+            // Filter & Search Logic
+            let currentFilter = 'all';
+            let currentSearch = '';
+
+            function applyFilters() {
+                const filtered = projects.filter(p => {
+                    // Check Category
+                    const matchCategory = currentFilter === 'all' || p.category === currentFilter;
+
+                    // Check Search Term
+                    const term = currentSearch.toLowerCase();
+                    const matchSearch = p.title.toLowerCase().includes(term) ||
+                        p.desc.toLowerCase().includes(term) ||
+                        p.tech.some(t => t.toLowerCase().includes(term));
+
+                    return matchCategory && matchSearch;
+                });
+
+                renderProjects(filtered);
+            }
+
+            // Bind Filter Buttons
+            $('.filter-btn').on('click', function () {
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                currentFilter = $(this).data('filter');
+                applyFilters();
+            });
+
+            // Bind Search Input
+            $('#searchInput').on('input', function () {
+                currentSearch = $(this).val();
+                applyFilters();
+            });
+        });
+
+        // Add CSS for the fade in animation programmatically
+        $('head').append(`
+            <style>
+                @keyframes fadeUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            </style>
+        `);
+    </script>
+</body>
+
+</html>
