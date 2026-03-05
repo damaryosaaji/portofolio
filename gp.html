@@ -19,24 +19,22 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F1F5F9; /* Abu-abu sangat muda agar card putih menonjol */
+            background-color: #F1F5F9; 
             color: #334155;
         }
 
-        /* Container utama: Terpusat dan rapi */
         .main-card {
             background: #FFFFFF;
             border-radius: 20px;
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 1100px; 
+            max-width: 900px; 
             overflow: hidden; 
         }
 
-        /* Hero Section (Kiri) - Dark Theme untuk kesan Security */
         .hero-section {
             background: linear-gradient(145deg, #0F172A 0%, #1E3A8A 100%);
-            padding: 3rem 2.5rem;
+            padding: 2.5rem 2rem;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -52,156 +50,72 @@
         }
 
         .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
             margin-bottom: auto; 
             position: relative;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem; /* Jarak antara logo dan teks */
         }
 
-        .brand-logo i {
-            color: var(--telkom-red);
-            font-size: 1.4rem;
+        .brand-logo img {
+            height: 32px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-logo span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
         }
 
         .hero-content {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             margin-bottom: auto;
             position: relative;
             z-index: 2;
         }
 
         .icon-wrapper {
-            width: 60px; 
-            height: 60px;
+            width: 52px; 
+            height: 52px;
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
-        /* Guide Section (Kanan) - Putih bersih */
         .guide-section {
-            padding: 2.5rem 3rem;
+            padding: 2rem 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
         }
 
-        /* Desain Timeline Premium */
-        .timeline {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 3px;
-            top: 8px;
-            bottom: 0;
-            width: 2px;
-            background-color: #E2E8F0;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1.5rem; 
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--primary-blue);
-            border: 2px solid #FFFFFF;
-            box-shadow: 0 0 0 1px var(--primary-blue);
-        }
-
-        .step-title {
-            font-weight: 700;
-            color: var(--telkom-dark);
-            margin-bottom: 0.25rem;
-            font-size: 0.95rem; 
-        }
-
-        .step-desc {
-            font-size: 0.85rem; 
-            color: #64748B;
-            margin-bottom: 0.4rem;
-            line-height: 1.5;
-        }
-
-        .custom-link {
-            font-size: 0.85rem;
-            color: var(--primary-blue);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: color 0.2s;
-        }
-
-        .custom-link:hover {
-            color: #1D4ED8;
-            text-decoration: underline;
-        }
-
-        /* Tombol Utama */
-        .btn-primary-custom {
-            background-color: var(--primary-blue);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border-radius: 10px;
-            width: 100%;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-        }
-
-        .btn-primary-custom:hover {
-            background-color: #1D4ED8;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
-        }
-
-        /* Helpdesk Box minimalis di bawah */
-        .helpdesk-box {
-            background-color: var(--surface-bg);
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            margin-top: 1.5rem;
-        }
+        /* Timeline CSS (Sama seperti sebelumnya) */
+        .timeline { position: relative; margin-top: 1.2rem; margin-bottom: 1.5rem; }
+        .timeline::before { content: ''; position: absolute; left: 13px; top: 10px; bottom: 25px; width: 2px; background-color: #E2E8F0; z-index: 0; }
+        .timeline-item { position: relative; padding-left: 2.8rem; margin-bottom: 1.2rem; z-index: 1; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .step-number { position: absolute; left: 0; top: -2px; width: 28px; height: 28px; background-color: var(--primary-blue); color: #FFFFFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; box-shadow: 0 0 0 4px #FFFFFF; }
+        .step-title { font-weight: 700; color: var(--telkom-dark); margin-bottom: 0.1rem; font-size: 0.95rem; }
+        .step-desc { font-size: 0.8rem; color: #64748B; margin-bottom: 0.2rem; line-height: 1.4; }
+        .custom-link { font-size: 0.8rem; color: var(--primary-blue); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; transition: color 0.2s; }
+        .custom-link:hover { color: #1D4ED8; text-decoration: underline; }
+        .btn-primary-custom { background-color: var(--primary-blue); border: none; padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.85rem; border-radius: 10px; width: 100%; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15); }
+        .btn-primary-custom:hover { background-color: #1D4ED8; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25); }
+        .helpdesk-box { background-color: var(--surface-bg); border: 1px solid #E2E8F0; border-radius: 12px; padding: 0.7rem 1rem; margin-top: 1.2rem; }
 
         @media (max-width: 991px) {
-            .hero-section {
-                padding: 2.5rem 2rem;
-            }
-            .guide-section {
-                padding: 2rem;
-            }
+            .hero-section { padding: 2rem 1.5rem; }
+            .guide-section { padding: 1.5rem 2rem; }
         }
     </style>
 </head>
@@ -215,22 +129,26 @@
                     <div class="hero-bg-pattern"></div>
                     
                     <div class="brand-logo">
-                        <i class="bi bi-building"></i> <span>Telkom Indonesia</span>
+                        <img src="https://damaryosaaji.github.io/portofolio/tlkm_white.svg" alt="Logo Telkom">
+                        <span>Telkom Indonesia</span>
                     </div>
 
                     <div class="hero-content">
                         <div class="icon-wrapper">
-                            <i class="bi bi-shield-lock-fill text-white fs-2"></i>
+                            <i class="bi bi-shield-exclamation text-warning fs-3"></i>
                         </div>
-                        <h1 class="fw-bold mb-3" style="font-size: 1.7rem; line-height: 1.3;">
-                            Koneksi Aman Diperlukan
+                        
+                        <div class="mb-2 text-warning fw-bold" style="font-size: 0.75rem; letter-spacing: 0.5px;">KONEKSI AMAN DIPERLUKAN</div>
+                        <h1 class="fw-bold mb-3" style="font-size: 1.5rem; line-height: 1.3;">
+                            Apakah jaringan Anda saat ini aman?
                         </h1>
-                        <p class="mb-4" style="font-size: 0.9rem; color: #94A3B8; line-height: 1.6;">
-                            Akses ke halaman ini dibatasi. Untuk melanjutkan, pastikan perangkat Anda terhubung ke jaringan internal perusahaan.
+                        <p class="mb-4" style="font-size: 0.85rem; color: #94A3B8; line-height: 1.6;">
+                            Untuk melindungi aset digital perusahaan, sistem membatasi akses Anda. Pastikan perangkat Anda terhubung ke jaringan internal melalui aplikasi <strong>Global Protect</strong>.
                         </p>
-                        <div class="d-flex align-items-center gap-2" style="font-size: 0.8rem; color: #CBD5E1;">
-                            <i class="bi bi-info-circle"></i>
-                            <span>Aktivitas akses ini dicatat oleh sistem.</span>
+                        
+                        <div class="d-flex align-items-center gap-2" style="font-size: 0.75rem; color: #CBD5E1;">
+                            <i class="bi bi-shield-check text-success"></i>
+                            <span>Aktivitas akses ini diawasi dan dicatat oleh sistem.</span>
                         </div>
                     </div>
                 </div>
@@ -240,27 +158,30 @@
                 <div class="guide-section">
                     
                     <div>
-                        <div class="d-inline-flex align-items-center gap-2 mb-2 px-2 py-1 bg-warning text-dark rounded" style="font-size: 0.7rem; font-weight: 700;">
+                        <div class="d-inline-flex align-items-center gap-1 mb-2 px-2 py-1 bg-warning text-dark rounded" style="font-size: 0.65rem; font-weight: 700;">
                             <i class="bi bi-exclamation-triangle-fill"></i> AKSES DIBATASI
                         </div>
-                        <h2 class="fw-bold mb-1" style="font-size: 1.2rem;">Panduan Global Protect</h2>
-                        <p class="text-muted" style="font-size: 0.85rem;">Ikuti langkah di bawah untuk menghubungkan jaringan.</p>
+                        <h2 class="fw-bold mb-1" style="font-size: 1.15rem;">Panduan Global Protect</h2>
+                        <p class="text-muted mb-0" style="font-size: 0.8rem;">Ikuti langkah di bawah untuk menghubungkan jaringan.</p>
 
                         <div class="timeline">
                             <div class="timeline-item">
-                                <div class="step-title">1. Persiapkan Akun Anda</div>
+                                <div class="step-number">1</div>
+                                <div class="step-title">Persiapkan Akun Anda</div>
                                 <div class="step-desc">Khusus pengguna Non-Organik/Mitra yang belum memiliki akun, silakan lakukan pendaftaran.</div>
-                                <a href="#" class="custom-link">Daftar Akun TGKYPAS <i class="bi bi-arrow-right-short fs-5"></i></a>
+                                <a href="#" class="custom-link">Daftar Akun TGKYPAS <i class="bi bi-arrow-right-short fs-6"></i></a>
                             </div>
 
                             <div class="timeline-item">
-                                <div class="step-title">2. Instalasi & Konfigurasi</div>
-                                <div class="step-desc">Unduh aplikasi Global Protect dan pelajari langkah instalasinya jika ini adalah pertama kalinya Anda mengakses.</div>
-                                <a href="#" class="custom-link">Buka Panduan Penggunaan <i class="bi bi-box-arrow-up-right ms-1" style="font-size: 0.7rem;"></i></a>
+                                <div class="step-number">2</div>
+                                <div class="step-title">Instalasi & Konfigurasi</div>
+                                <div class="step-desc">Unduh aplikasi Global Protect dan pelajari langkah instalasinya jika baru pertama kali.</div>
+                                <a href="#" class="custom-link">Buka Panduan Penggunaan <i class="bi bi-box-arrow-up-right ms-1" style="font-size: 0.65rem;"></i></a>
                             </div>
 
                             <div class="timeline-item">
-                                <div class="step-title">3. Hubungkan ke Jaringan</div>
+                                <div class="step-number">3</div>
+                                <div class="step-title">Hubungkan ke Jaringan</div>
                                 <div class="step-desc mb-0">Buka aplikasi Global Protect di perangkat Anda, lakukan proses <em>Login</em> dan klik <em>Connect</em>.</div>
                             </div>
                         </div>
@@ -273,9 +194,9 @@
                     <div class="helpdesk-box d-flex align-items-center gap-3">
                         <i class="bi bi-headset text-primary fs-4"></i>
                         <div>
-                            <div class="fw-bold text-dark" style="font-size: 0.85rem;">Butuh Bantuan Teknis?</div>
-                            <div class="text-muted" style="font-size: 0.75rem;">
-                                Hubungi tim IT Support di <a href="mailto:it-care@telkom.co.id" class="text-primary fw-semibold text-decoration-none">it-care@telkom.co.id</a> atau telp <strong>1500472</strong>
+                            <div class="fw-bold text-dark" style="font-size: 0.8rem;">Butuh Bantuan Teknis?</div>
+                            <div class="text-muted" style="font-size: 0.7rem;">
+                                Hubungi tim IT di <a href="mailto:it-care@telkom.co.id" class="text-primary fw-semibold text-decoration-none">it-care@telkom.co.id</a> atau telp <strong>1500472</strong>
                             </div>
                         </div>
                     </div>
