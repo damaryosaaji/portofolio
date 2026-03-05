@@ -17,7 +17,6 @@
             --surface-bg: #F8FAFC;
         }
 
-        /* --- GLOBAL BACKGROUND: Aurora 3 Warna Lebih Nyata --- */
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
@@ -26,40 +25,85 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            
-            /* Warna Dasar Sedikit Abu-abu (Off-White) agar warna aurora lebih keluar */
-            background-color: #F8FAFC;
-            
-            /* Aurora: Biru, Hijau Kebiruan (Cyan), Pink, dan tambahan sedikit Ungu untuk transisi */
-            background-image: 
-                radial-gradient(circle at top left, rgba(37, 99, 235, 0.25) 0%, transparent 65%),
-                radial-gradient(circle at bottom right, rgba(13, 148, 136, 0.25) 0%, transparent 65%),
-                radial-gradient(circle at top right, rgba(219, 39, 119, 0.20) 0%, transparent 65%),
-                radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15) 0%, transparent 65%);
-            
-            background-size: 200% 200%;
-            animation: whiteAuroraLoop 15s ease-in-out infinite;
+            background-color: #F8FAFC; /* Base warna terang yang solid */
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Pergerakan Aurora memutar layar */
-        @keyframes whiteAuroraLoop {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 100% 0%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
+        /* --- CONTAINER BOLA AURORA --- */
+        .aurora-container {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+            z-index: 0; /* Pastikan di paling belakang */
+            pointer-events: none;
         }
 
+        /* Styling dasar bulatan aurora */
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            /* Rahasia efek aurora: Blur yang sangat besar memudarkan tepian bola */
+            filter: blur(90px); 
+            opacity: 0.5; /* Tingkat ketebalan warna */
+            animation-duration: 20s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        /* Bulatan 1: Biru (Kiri Atas) */
+        .blob-blue {
+            width: 450px; height: 450px;
+            background-color: #2563EB;
+            top: -10%; left: -10%;
+            animation-name: floatBlue;
+        }
+
+        /* Bulatan 2: Pink (Kanan Bawah) */
+        .blob-pink {
+            width: 350px; height: 350px;
+            background-color: #DB2777;
+            bottom: -10%; right: -5%;
+            animation-name: floatPink;
+        }
+
+        /* Bulatan 3: Cyan/Hijau Kebiruan (Kiri Bawah) */
+        .blob-cyan {
+            width: 500px; height: 500px;
+            background-color: #0D9488;
+            bottom: -20%; left: 15%;
+            animation-name: floatCyan;
+        }
+
+        /* --- ANIMASI PERGERAKAN BEBAS (Translate) --- */
+        @keyframes floatBlue {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30vw, 20vh) scale(1.1); }
+            66% { transform: translate(10vw, 40vh) scale(0.9); }
+        }
+
+        @keyframes floatPink {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-20vw, -30vh) scale(1.2); }
+            66% { transform: translate(-40vw, -10vh) scale(0.8); }
+        }
+
+        @keyframes floatCyan {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(25vw, -20vh) scale(0.9); }
+            66% { transform: translate(5vw, -30vh) scale(1.1); }
+        }
+
+        /* --- MAIN CARD --- */
         .main-card {
             background: #FFFFFF;
             border-radius: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1), 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), 0 10px 30px -10px rgba(0, 0, 0, 0.05);
             width: 100%;
             max-width: 900px; 
             overflow: hidden; 
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Berada di depan aurora */
         }
 
         .hero-section {
@@ -119,11 +163,9 @@
             border-radius: 12px; padding: 0.8rem 1rem; 
         }
 
-        /* Menghentikan animasi jika perangkat user dalam mode penghemat daya/kurangi gerakan */
         @media (prefers-reduced-motion: reduce) {
-            body {
+            .aurora-blob {
                 animation: none;
-                background-position: center;
             }
         }
 
@@ -135,6 +177,12 @@
     </style>
 </head>
 <body class="min-vh-100 d-flex align-items-center justify-content-center py-4">
+
+    <div class="aurora-container">
+        <div class="aurora-blob blob-blue"></div>
+        <div class="aurora-blob blob-pink"></div>
+        <div class="aurora-blob blob-cyan"></div>
+    </div>
 
     <div class="container d-flex justify-content-center">
         <div class="main-card row g-0">
