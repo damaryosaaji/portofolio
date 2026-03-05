@@ -30,80 +30,67 @@
             position: relative;
         }
 
-        /* --- CONTAINER BOLA AURORA --- */
+        /* --- CONTAINER DUA GLOWING ORBS --- */
         .aurora-container {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             overflow: hidden;
-            z-index: 0; /* Pastikan di paling belakang */
+            z-index: 0; /* Di paling belakang */
             pointer-events: none;
         }
 
-        /* Styling dasar bulatan aurora */
+        /* Styling dasar bulatan orbs */
         .aurora-blob {
             position: absolute;
             border-radius: 50%;
-            /* Rahasia efek aurora: Blur yang sangat besar memudarkan tepian bola */
-            filter: blur(90px); 
-            opacity: 0.5; /* Tingkat ketebalan warna */
-            animation-duration: 20s;
+            /* Rahasia efek orbs: Blur yang sangat besar meleburkan bentuk lingkaran */
+            filter: blur(100px); /* Blur sedikit dinaikkan agar lebih halus di background putih */
+            opacity: 0.4; /* SANGAT TIPIS agar tidak mencolok, disesuaikan untuk putih polos */
+            animation-duration: 25s; /* Diperlambat agar gerakan lebih 'ambient' */
             animation-iteration-count: infinite;
             animation-timing-function: ease-in-out;
         }
 
-        /* Bulatan 1: Biru (Kiri Atas) */
+        /* Orbs 1: Biru (Kiri Atas) */
         .blob-blue {
-            width: 450px; height: 450px;
+            width: 500px; height: 500px;
             background-color: #2563EB;
             top: -10%; left: -10%;
             animation-name: floatBlue;
         }
 
-        /* Bulatan 2: Pink (Kanan Bawah) */
+        /* Orbs 2: Pink (Kanan Bawah) */
         .blob-pink {
-            width: 350px; height: 350px;
+            width: 400px; height: 400px;
             background-color: #DB2777;
             bottom: -10%; right: -5%;
             animation-name: floatPink;
         }
 
-        /* Bulatan 3: Cyan/Hijau Kebiruan (Kiri Bawah) */
-        .blob-cyan {
-            width: 500px; height: 500px;
-            background-color: #0D9488;
-            bottom: -20%; left: 15%;
-            animation-name: floatCyan;
-        }
-
-        /* --- ANIMASI PERGERAKAN BEBAS (Translate) --- */
+        /* --- ANIMASI PERGERAKAN BEBAS DAN PERUBAHAN UKURAN (Floating & Scale) --- */
         @keyframes floatBlue {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30vw, 20vh) scale(1.1); }
-            66% { transform: translate(10vw, 40vh) scale(0.9); }
+            33% { transform: translate(35vw, 25vh) scale(1.15); } /* Gerakan sedikit diperlebar */
+            66% { transform: translate(15vw, 45vh) scale(0.9); }
         }
 
         @keyframes floatPink {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-20vw, -30vh) scale(1.2); }
-            66% { transform: translate(-40vw, -10vh) scale(0.8); }
+            33% { transform: translate(-25vw, -35vh) scale(1.25); } /* Gerakan sedikit diperlebar */
+            66% { transform: translate(-45vw, -15vh) scale(0.8); }
         }
 
-        @keyframes floatCyan {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(25vw, -20vh) scale(0.9); }
-            66% { transform: translate(5vw, -30vh) scale(1.1); }
-        }
-
-        /* --- MAIN CARD --- */
+        /* --- MAIN CARD (Sama seperti sebelumnya, statis dan bersih) --- */
         .main-card {
             background: #FFFFFF;
             border-radius: 24px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+            /* Shadow dibuat premium, tipis dan menyebar mengapung di atas orbs */
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.08), 0 15px 40px -10px rgba(0, 0, 0, 0.05);
             width: 100%;
             max-width: 900px; 
             overflow: hidden; 
             position: relative;
-            z-index: 10; /* Berada di depan aurora */
+            z-index: 10; /* Di depan orbs */
         }
 
         .hero-section {
@@ -163,6 +150,7 @@
             border-radius: 12px; padding: 0.8rem 1rem; 
         }
 
+        /* Menghentikan animasi jika perangkat user dalam mode penghemat daya/kurangi gerakan */
         @media (prefers-reduced-motion: reduce) {
             .aurora-blob {
                 animation: none;
@@ -181,7 +169,6 @@
     <div class="aurora-container">
         <div class="aurora-blob blob-blue"></div>
         <div class="aurora-blob blob-pink"></div>
-        <div class="aurora-blob blob-cyan"></div>
     </div>
 
     <div class="container d-flex justify-content-center">
