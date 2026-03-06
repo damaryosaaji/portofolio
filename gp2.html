@@ -73,9 +73,32 @@
             background-image: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 50%); pointer-events: none;
         }
 
-        /* --- UTILITIES & KELAS BANTUAN --- */
-        .hover-card { transition: all 0.2s ease; border: 1px solid #E2E8F0; }
-        .hover-card:hover { border-color: var(--primary-blue); background-color: #F8FAFC; box-shadow: 0 4px 12px rgba(37,99,235,0.06); transform: translateY(-2px); }
+        /* --- BENTO GRID UTILITIES --- */
+        .step-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-card {
+            background-color: var(--surface-bg);
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+            transform: translateY(-2px);
+        }
+
+        .step-icon-box { width: 42px; height: 42px; background-color: #F1F5F9; color: #475569; border-radius: 12px; }
+        .step-badge-circle { width: 28px; height: 28px; background-color: #64748B; color: white; font-size: 0.8rem; }
         
         .btn-custom-outline { border: 1px solid #CBD5E1; color: #475569; background-color: #FFFFFF; transition: all 0.2s; }
         .btn-custom-outline:hover { background-color: #F8FAFC; border-color: #94A3B8; color: var(--telkom-dark); }
@@ -83,6 +106,7 @@
         @media (max-width: 991px) {
             body { padding: 1rem; }
             .hero-section { padding: 2.5rem 1.5rem; }
+            .step-cards-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -127,12 +151,35 @@
                     Jika saat proses login Global Protect terdapat notifikasi peringatan <strong class="text-dark">"Certificate Trust Settings"</strong>, mohon ikuti langkah berikut:
                 </p>
 
-                <div class="rounded-4 p-4 mb-4 border" style="background-color: var(--surface-bg);">
-                    <ol class="mb-0 text-secondary ps-3 fw-medium" style="font-size: 0.85rem; line-height: 1.8;">
-                        <li class="mb-2">Perhatikan <strong>popup</strong> notifikasi yang muncul di layar Anda.</li>
-                        <li class="mb-2">Masukkan <strong>Password laptop</strong> atau gunakan <strong>Touch ID</strong> Mac Anda.</li>
-                        <li class="mb-0">Pilih dan klik opsi <strong class="text-primary">"Update Settings"</strong> untuk menyetujui.</li>
-                    </ol>
+                <div class="step-cards-container">
+                    
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-window-stack fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">1</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Cek Notifikasi</h3>
+                        <p class="text-secondary mb-0 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Perhatikan <strong>popup</strong> notifikasi yang muncul di layar Anda.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-fingerprint fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">2</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Autentikasi</h3>
+                        <p class="text-secondary mb-0 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Masukkan <strong>Password laptop</strong> atau gunakan <strong>Touch ID</strong> Mac Anda.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-check2-circle fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">3</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Simpan Opsi</h3>
+                        <p class="text-secondary mb-0 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Pilih dan klik opsi <strong class="text-primary">"Update Settings"</strong> untuk menyetujui.</p>
+                    </div>
+
                 </div>
 
                 <div class="mt-auto">
