@@ -19,173 +19,186 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #F1F5F9; 
-            color: #334155;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #F8FAFC; 
+            overflow-x: hidden;
         }
 
+        /* --- BACKGROUND AURORA --- */
+        .aurora-container {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .aurora-blob {
+            position: absolute; border-radius: 50%;
+            filter: blur(100px); opacity: 0.4; 
+            animation: 25s infinite ease-in-out;
+        }
+        .blob-blue { width: 500px; height: 500px; background-color: #2563EB; top: -10%; left: -10%; animation-name: floatBlue; }
+        .blob-pink { width: 400px; height: 400px; background-color: #DB2777; bottom: -10%; right: -5%; animation-name: floatPink; }
+
+        @keyframes floatBlue {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(35vw, 25vh) scale(1.15); } 
+            66% { transform: translate(15vw, 45vh) scale(0.9); }
+        }
+        @keyframes floatPink {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-25vw, -35vh) scale(1.25); } 
+            66% { transform: translate(-45vw, -15vh) scale(0.8); }
+        }
+        @media (prefers-reduced-motion: reduce) { .aurora-blob { animation: none; } }
+
+        /* --- MAIN LAYOUT & HERO --- */
         .main-card {
             background: #FFFFFF;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 900px; 
-            overflow: hidden; 
+            border-radius: 24px;
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.08), 0 15px 40px -10px rgba(0, 0, 0, 0.05);
+            width: 100%; max-width: 1000px; 
+            overflow: hidden; position: relative; z-index: 10; 
         }
 
         .hero-section {
             background: linear-gradient(145deg, #0F172A 0%, #1E3A8A 100%);
-            padding: 3rem 2.5rem; 
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            color: white;
-            justify-content: center; 
+            padding: 3rem 2rem; height: 100%; display: flex; flex-direction: column; position: relative; color: white; justify-content: center; 
         }
 
         .hero-bg-pattern {
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background-image: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+            background-image: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 50%); pointer-events: none;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .icon-wrapper {
-            width: 56px; 
-            height: 56px;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .guide-section {
-            padding: 2rem 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        /* Styling box instruksi Mac */
-        .instruction-box {
-            background-color: #F8FAFC;
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .instruction-list {
-            padding-left: 1.2rem;
-            margin-bottom: 0;
-            color: var(--telkom-dark);
-            font-size: 0.85rem;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .instruction-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .instruction-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Styling Helpdesk disamakan */
-        .helpdesk-box { 
-            background-color: var(--surface-bg); 
-            border: 1px solid #E2E8F0; 
-            border-radius: 12px; 
-            padding: 0.8rem 1rem; 
-        }
+        /* --- UTILITIES & KELAS BANTUAN --- */
+        .hover-card { transition: all 0.2s ease; border: 1px solid #E2E8F0; }
+        .hover-card:hover { border-color: var(--primary-blue); background-color: #F8FAFC; box-shadow: 0 4px 12px rgba(37,99,235,0.06); transform: translateY(-2px); }
+        
+        .btn-custom-outline { border: 1px solid #CBD5E1; color: #475569; background-color: #FFFFFF; transition: all 0.2s; }
+        .btn-custom-outline:hover { background-color: #F8FAFC; border-color: #94A3B8; color: var(--telkom-dark); }
 
         @media (max-width: 991px) {
-            .hero-section { padding: 3rem 2rem; }
-            .guide-section { padding: 1.5rem 2rem; }
+            body { padding: 1rem; }
+            .hero-section { padding: 2.5rem 1.5rem; }
         }
     </style>
 </head>
-<body class="min-vh-100 d-flex align-items-center justify-content-center py-4">
+<body>
+
+    <div class="aurora-container">
+        <div class="aurora-blob blob-blue"></div>
+        <div class="aurora-blob blob-pink"></div>
+    </div>
 
     <div class="container d-flex justify-content-center">
         <div class="main-card row g-0">
                 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <div class="hero-section">
                     <div class="hero-bg-pattern"></div>
-                    
-                    <div class="hero-content">
-                        <div class="icon-wrapper">
-                            <i class="bi bi-apple text-white fs-2"></i>
+                    <div class="position-relative" style="z-index: 2;">
+                        <div class="d-inline-flex align-items-center justify-content-center border rounded-3 mb-4" style="width: 52px; height: 52px; background-color: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.2) !important;">
+                            <i class="bi bi-apple text-white fs-4"></i>
                         </div>
-                        
-                        <h1 class="fw-bold mb-3" style="font-size: 1.5rem; line-height: 1.3;">
+                        <h1 class="fw-bold mb-3" style="font-size: 1.4rem; line-height: 1.3;">
                             Pemberitahuan Pengguna Mac
                         </h1>
-                        <p class="mb-4" style="font-size: 0.85rem; color: #94A3B8; line-height: 1.6;">
+                        <p class="mb-0 text-light opacity-75" style="font-size: 0.85rem; line-height: 1.6;">
                             Penyesuaian keamanan diperlukan untuk sistem operasi <strong>macOS</strong>. Pastikan pengaturan sertifikat diperbarui agar aplikasi Global Protect dapat berjalan dengan lancar.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-7">
-                <div class="guide-section">
-                    
-                    <div>
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div class="d-inline-flex align-items-center gap-1 px-2 py-1 bg-warning text-dark rounded" style="font-size: 0.65rem; font-weight: 700;">
-                                <i class="bi bi-exclamation-triangle-fill"></i> CAUTION
-                            </div>
-                            
-                            <img src="https://damaryosaaji.github.io/portofolio/tlkm.svg" alt="Telkom Indonesia" style="height: 32px; object-fit: contain;">
-                        </div>
-
-                        <h2 class="fw-bold mb-2" style="font-size: 1.15rem;">Pengaturan Certificate Trust</h2>
-                        <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.5;">
-                            Jika saat proses login Global Protect terdapat notifikasi peringatan <strong class="text-dark">"Certificate Trust Settings"</strong>, mohon ikuti langkah berikut:
-                        </p>
-
-                        <div class="instruction-box">
-                            <ol class="instruction-list">
-                                <li>Perhatikan <strong>popup</strong> notifikasi yang muncul di layar Anda.</li>
-                                <li>Masukkan <strong>Password laptop</strong> atau gunakan <strong>Touch ID</strong> Mac Anda.</li>
-                                <li>Pilih dan klik opsi <strong class="text-primary">"Update Settings"</strong> untuk menyetujui.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <div class="mt-auto">
-                        
-                        <div class="helpdesk-box d-flex align-items-center gap-3">
-                            <i class="bi bi-headset text-primary fs-4"></i>
-                            <div>
-                                <div class="fw-bold text-dark" style="font-size: 0.8rem;">Butuh Bantuan Teknis?</div>
-                                <div class="text-muted" style="font-size: 0.7rem;">
-                                    Hubungi tim IT di <a href="mailto:it-care@telkom.co.id" class="text-primary fw-semibold text-decoration-none">it-care@telkom.co.id</a> atau telp <strong>1500472</strong>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
+            <div class="col-lg-8 p-4 p-md-5 d-flex flex-column bg-white">
+                
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <span class="badge bg-warning text-dark px-2 py-1 rounded-2 fw-bold" style="font-size: 0.65rem;">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> CAUTION
+                    </span>
+                    <img src="https://damaryosaaji.github.io/portofolio/tlkm.svg" alt="Telkom Indonesia" style="height: 32px; object-fit: contain;">
                 </div>
-            </div>
 
+                <h2 class="fw-bold mb-2" style="font-size: 1.25rem; color: var(--telkom-dark);">Pengaturan Certificate Trust</h2>
+                <p class="text-secondary mb-4" style="font-size: 0.85rem; line-height: 1.5;">
+                    Jika saat proses login Global Protect terdapat notifikasi peringatan <strong class="text-dark">"Certificate Trust Settings"</strong>, mohon ikuti langkah berikut:
+                </p>
+
+                <div class="rounded-4 p-4 mb-4 border" style="background-color: var(--surface-bg);">
+                    <ol class="mb-0 text-secondary ps-3 fw-medium" style="font-size: 0.85rem; line-height: 1.8;">
+                        <li class="mb-2">Perhatikan <strong>popup</strong> notifikasi yang muncul di layar Anda.</li>
+                        <li class="mb-2">Masukkan <strong>Password laptop</strong> atau gunakan <strong>Touch ID</strong> Mac Anda.</li>
+                        <li class="mb-0">Pilih dan klik opsi <strong class="text-primary">"Update Settings"</strong> untuk menyetujui.</li>
+                    </ol>
+                </div>
+
+                <div class="mt-auto">
+                    <div class="mb-4">
+                        <button class="btn btn-custom-outline w-100 py-2 px-3 rounded-3 fw-semibold d-flex justify-content-center align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#supportModal" style="font-size: 0.9rem;">
+                            <i class="bi bi-headset"></i> Lapor Helpdesk
+                        </button>
+                    </div>
+
+                    <div class="text-md-end text-center text-secondary" style="font-size: 0.65rem;">
+                        &copy; 2026 DIVISI INFORMATION TECHNOLOGY
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
+
+    <div class="modal fade" id="supportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-bottom-0 pb-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-dark fs-5">
+                        <i class="bi bi-headset text-primary me-2"></i> Laporkan Kendala
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary mb-4" style="font-size: 0.85rem;">
+                        Pilih saluran bantuan di bawah ini. Pastikan menyertakan <strong>screenshot</strong> kendala untuk mempercepat pengecekan.
+                    </p>
+
+                    <div class="d-flex flex-column gap-3">
+                        <a href="tel:1500472" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #FEF2F2; color: var(--telkom-red);"><i class="bi bi-telephone-fill"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Call Center IT Care</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">Ext: 1500472</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+
+                        <a href="mailto:it-care@telkom.co.id" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #EFF6FF; color: var(--primary-blue);"><i class="bi bi-envelope-fill"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Kirim Email</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">it-care@telkom.co.id</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+
+                        <a href="https://t.me/DIT_Care" target="_blank" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #E0F2FE; color: #0284C7;"><i class="bi bi-telegram"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Telegram Helpdesk</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">@DIT_Care</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
