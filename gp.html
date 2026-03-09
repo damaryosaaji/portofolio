@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akses Terbatas - Hubungkan VPN</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --telkom-red: #ED1C24;
+            --telkom-dark: #0F172A;
+            --primary-blue: #2563EB;
+            --surface-bg: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #F8FAFC; 
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND AURORA --- */
+        .aurora-container {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0; pointer-events: none; overflow: hidden;
+        }
+        .aurora-blob {
+            position: absolute; border-radius: 50%;
+            filter: blur(100px); opacity: 0.4; 
+            animation: 25s infinite ease-in-out;
+        }
+        .blob-blue { width: 500px; height: 500px; background-color: #2563EB; top: -10%; left: -10%; animation-name: floatBlue; }
+        .blob-pink { width: 400px; height: 400px; background-color: #DB2777; bottom: -10%; right: -5%; animation-name: floatPink; }
+
+        @keyframes floatBlue {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(35vw, 25vh) scale(1.15); } 
+            66% { transform: translate(15vw, 45vh) scale(0.9); }
+        }
+        @keyframes floatPink {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-25vw, -35vh) scale(1.25); } 
+            66% { transform: translate(-45vw, -15vh) scale(0.8); }
+        }
+        @media (prefers-reduced-motion: reduce) { .aurora-blob { animation: none; } }
+
+        /* --- MAIN LAYOUT & HERO --- */
+        .main-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.08), 0 15px 40px -10px rgba(0, 0, 0, 0.05);
+            width: 100%; max-width: 1000px; 
+            overflow: hidden; position: relative; z-index: 10; 
+        }
+
+        .hero-section {
+            background: linear-gradient(145deg, #0F172A 0%, #1E3A8A 100%);
+            padding: 3rem 2rem; height: 100%; display: flex; flex-direction: column; position: relative; color: white; justify-content: center; 
+        }
+
+        .hero-bg-pattern {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+            background-image: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 50%); pointer-events: none;
+        }
+
+        /* --- BENTO GRID UTILITIES (Konsisten dengan halaman Mac) --- */
+        .step-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-card {
+            background-color: var(--surface-bg); /* Warna card diseragamkan ke #F8FAFC */
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+
+        .step-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Warna Steel Blue yang konsisten */
+        .step-icon-box { 
+            width: 42px; height: 42px; 
+            background-color: #F3F6F9; 
+            color: #5B7B9C; 
+            border-radius: 12px; 
+        }
+        .step-badge-circle { 
+            width: 26px; height: 26px; 
+            background-color: #6581A0; 
+            color: white; 
+            font-size: 0.8rem; 
+        }
+        
+        .btn-custom-outline { border: 1px solid #CBD5E1; color: #475569; background-color: #FFFFFF; transition: all 0.2s; }
+        .btn-custom-outline:hover { background-color: #F8FAFC; border-color: #94A3B8; color: var(--telkom-dark); }
+
+        @media (max-width: 991px) {
+            body { padding: 1rem; }
+            .hero-section { padding: 2.5rem 1.5rem; }
+            .step-cards-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-container">
+        <div class="aurora-blob blob-blue"></div>
+        <div class="aurora-blob blob-pink"></div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <div class="main-card row g-0">
+                
+            <div class="col-lg-4">
+                <div class="hero-section">
+                    <div class="hero-bg-pattern"></div>
+                    <div class="position-relative" style="z-index: 2;">
+                        <div class="d-inline-flex align-items-center justify-content-center border rounded-3 mb-4" style="width: 52px; height: 52px; background-color: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-color: rgba(255,255,255,0.2) !important;">
+                            <i class="bi bi-shield-exclamation text-warning fs-4"></i>
+                        </div>
+                        <h1 class="fw-bold mb-3" style="font-size: 1.4rem; line-height: 1.3;">
+                            Apakah jaringan Anda saat ini aman?
+                        </h1>
+                        <p class="mb-4 text-light opacity-75" style="font-size: 0.85rem; line-height: 1.6;">
+                            Untuk melindungi aset digital perusahaan, sistem membatasi akses Anda. Pastikan perangkat terhubung ke jaringan internal melalui aplikasi <strong>Global Protect</strong>.
+                        </p>
+                        <div class="d-flex align-items-center gap-2" style="font-size: 0.75rem; color: #CBD5E1;">
+                            <i class="bi bi-shield-check text-success"></i>
+                            <span>Aktivitas akses ini diawasi dan dicatat oleh sistem.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 p-4 p-md-5 d-flex flex-column bg-white">
+                
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <span class="badge bg-warning text-dark px-2 py-1 rounded-2 fw-bold" style="font-size: 0.65rem;">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> AKSES DIBATASI
+                    </span>
+                    <img src="https://damaryosaaji.github.io/portofolio/tlkm.svg" alt="Telkom Indonesia" style="height: 32px; object-fit: contain;">
+                </div>
+
+                <h2 class="fw-bold mb-2" style="font-size: 1.25rem; color: var(--telkom-dark);">Panduan Global Protect</h2>
+                <p class="text-secondary mb-4" style="font-size: 0.85rem;">Ikuti langkah di bawah untuk terhubung ke jaringan.</p>
+
+                <div class="step-cards-container">
+                    
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-person fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">1</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Persiapkan Akun</h3>
+                        <p class="text-secondary mb-3 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Daftar akun TGKYPAS jika belum memiliki.</p>
+                        <a href="#" class="text-decoration-none fw-semibold text-primary mt-auto d-inline-flex align-items-center gap-1" style="font-size: 0.8rem;">
+                            Daftar <i class="bi bi-arrow-right-short fs-5"></i>
+                        </a>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-download fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">2</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Install VPN</h3>
+                        <p class="text-secondary mb-3 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Unduh dan install aplikasi Global Protect.</p>
+                        <a href="#" class="text-decoration-none fw-semibold text-primary mt-auto d-inline-flex align-items-center gap-1" style="font-size: 0.8rem;">
+                            Unduh <i class="bi bi-arrow-right-short fs-5"></i>
+                        </a>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div class="step-icon-box d-flex align-items-center justify-content-center"><i class="bi bi-wifi fs-5"></i></div>
+                            <div class="step-badge-circle rounded-circle d-flex align-items-center justify-content-center fw-bold">3</div>
+                        </div>
+                        <h3 class="fw-bold mb-2" style="font-size: 0.95rem; color: var(--telkom-dark);">Hubungkan</h3>
+                        <p class="text-secondary mb-3 flex-grow-1" style="font-size: 0.75rem; line-height: 1.5;">Login dan klik Connect di aplikasi.</p>
+                        <a href="#" class="text-decoration-none fw-semibold text-primary mt-auto d-inline-flex align-items-center gap-1" style="font-size: 0.8rem;">
+                            Panduan <i class="bi bi-arrow-right-short fs-5"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="mt-auto">
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-md-7">
+                            <button class="btn btn-primary w-100 py-2 px-3 rounded-3 fw-semibold shadow-sm d-flex justify-content-center align-items-center gap-2" style="font-size: 0.9rem;">
+                                <i class="bi bi-arrow-clockwise"></i> Saya Sudah Terhubung
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <button class="btn btn-custom-outline w-100 py-2 px-3 rounded-3 fw-semibold d-flex justify-content-center align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#supportModal" style="font-size: 0.9rem;">
+                                <i class="bi bi-headset"></i> Lapor Helpdesk
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-md-end text-center text-secondary" style="font-size: 0.65rem;">
+                        &copy; 2026 DIVISI INFORMATION TECHNOLOGY
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-bottom-0 pb-0 px-4 pt-4">
+                    <h5 class="modal-title fw-bold text-dark fs-5">
+                        <i class="bi bi-headset text-primary me-2"></i> Laporkan Kendala
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-secondary mb-4" style="font-size: 0.85rem;">
+                        Pilih saluran bantuan di bawah ini. Pastikan menyertakan <strong>screenshot</strong> kendala untuk mempercepat pengecekan.
+                    </p>
+
+                    <div class="d-flex flex-column gap-3">
+                        <a href="tel:1500472" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #FEF2F2; color: var(--telkom-red);"><i class="bi bi-telephone-fill"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Call Center IT Care</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">Ext: 1500472</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+
+                        <a href="mailto:it-care@telkom.co.id" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #EFF6FF; color: var(--primary-blue);"><i class="bi bi-envelope-fill"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Kirim Email</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">it-care@telkom.co.id</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+
+                        <a href="https://t.me/DIT_Care" target="_blank" class="d-flex align-items-center gap-3 p-3 border rounded-3 text-decoration-none hover-card text-dark">
+                            <div class="d-flex align-items-center justify-content-center rounded-3" style="width:40px; height:40px; background-color: #E0F2FE; color: #0284C7;"><i class="bi bi-telegram"></i></div>
+                            <div>
+                                <div class="fw-bold" style="font-size: 0.9rem;">Telegram Helpdesk</div>
+                                <div class="text-secondary" style="font-size: 0.75rem;">@DIT_Care</div>
+                            </div>
+                            <i class="bi bi-chevron-right ms-auto text-secondary"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
