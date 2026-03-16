@@ -768,6 +768,25 @@
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 12px 32px rgba(0, 122, 255, 0.45);
         }
+
+        /* === TYPEWRITER CURSOR === */
+        .typewriter-cursor {
+            color: var(--primary-blue);
+            font-weight: 300;
+            animation: blinkTextCursor 0.7s infinite normal;
+        }
+
+        @keyframes blinkTextCursor {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -811,9 +830,9 @@
 
                     <h1 class="fw-bold display-4 mb-4 lh-sm reveal reveal-delay-1" style="letter-spacing: -0.03em;">
                         Transform Your Ideas Into <br>
-                        <span
-                            style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;">High-Performance
-                            Apps</span>
+                        <span class="typewriter-text"
+                            style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;"></span>
+                        <span class="typewriter-cursor">|</span>
                     </h1>
 
                     <p class="lead text-secondary mb-5 fw-medium reveal reveal-delay-2"
@@ -1292,6 +1311,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function () {
+            // === TYPEWRITER EFFECT ===
+            const txtElement = document.querySelector('.typewriter-text');
+            const words = ["High-Performance Apps", "Stunning Web Interfaces", "Enterprise Solutions"];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeWriter() {
+                if (!txtElement) return;
+                const currentWord = words[wordIndex];
+
+                if (isDeleting) {
+                    txtElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    txtElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typeSpeed = isDeleting ? 40 : 80;
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    typeSpeed = 2000; // Jeda saat kata selesai
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeSpeed = 500; // Jeda sebelum kata baru
+                }
+                setTimeout(typeWriter, typeSpeed);
+            }
+            if (txtElement) setTimeout(typeWriter, 1000);
+
             // === SCROLL REVEAL ===
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
