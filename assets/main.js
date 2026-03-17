@@ -72,11 +72,11 @@ $(document).ready(function () {
             solution: "Mengimplementasikan strategi *offline-first* dengan sinkronisasi Firebase lokal dan sistem antrean job (queue background) di React Native.",
             impact: "Mendapatkan 10,000+ unduhan di bulan pertama dengan tingkat adopsi harian (DAU) mencapai 40%. Mengurangi waktu penjemputan dari rata-rata 2 hari menjadi 4 jam.",
             tech: ["React Native", "Node.js", "Firebase", "Google Maps API", "Socket.io"],
-            scope: ["Frontend Architecture", "UI/UX Prototyping", "Offline-first sync", "Deployment App Store & Play Store"],
+            scope: ["Fullstack Architecture", "UI/UX Prototyping", "Offline-first sync", "Deployment App Store & Play Store"],
             features: ["Sistem tracking kurir realtime", "Gamifikasi & Leaderboard", "E-Wallet Integrasi", "Offline support"]
         },
         "smileadvance": {
-            title: "Smile Advance", category: "enterprise", client: "Multinational FMCG", timeline: "6 Months", role: "Frontend Lead Developer",
+            title: "Smile Advance", category: "enterprise", client: "Multinational FMCG", timeline: "6 Months", role: "Fullstack Lead Developer",
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
             images: [
                 "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
@@ -106,7 +106,7 @@ $(document).ready(function () {
             solution: "Membangun *wrapper* komponen Vue di atas *library* D3.js yang memperbolehkan perhitungan SVG matematis dinamis berdasarkan dimensi kontainer.",
             impact: "Memudahkan manajer dan dewan redaksi untuk mengambil keputusan bisnis 3x lebih cepat dibandingkan menggunakan laporan excel konvensional bulanan.",
             tech: ["Vue.js", "TailwindCSS", "D3.js", "Express.js"],
-            scope: ["Frontend Dashboard", "D3.js Data Visualization", "RESTful API Development", "WebSocket Setup"],
+            scope: ["Fullstack Dashboard", "D3.js Data Visualization", "RESTful API Development", "WebSocket Setup"],
             features: ["Interactive D3.js Charts", "Realtime WebSocket ticker", "Data Export (Excel/PDF)", "Dark/Light mode seamless"]
         },
         "medicare": {
