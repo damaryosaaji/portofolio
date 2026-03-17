@@ -332,8 +332,16 @@
             border: 1px solid var(--border-light);
         }
 
+        [data-theme="dark"] .navbar-toggler-icon {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
         [data-theme="dark"] .gallery-nav:hover {
             background: var(--surface-bg);
+        }
+
+        [data-theme="dark"] .cta-section {
+            background: linear-gradient(135deg, #1e293b 0%, #020617 100%);
         }
 
         /* === CLIENT LOGOS === */
@@ -416,6 +424,20 @@
             .bento-tall {
                 min-height: 280px !important;
                 height: 280px !important;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+
+            .bento-card,
+            .bento-tall {
+                min-height: 250px !important;
+                height: 250px !important;
+            }
+
+            .card-modern-img {
+                height: 250px !important;
+                aspect-ratio: auto;
             }
         }
 
@@ -974,6 +996,13 @@
             max-height: 420px;
             background-color: #f3f4f6;
             position: relative;
+        }
+
+        @media (max-width: 767.98px) {
+            .project-cover {
+                height: 250px;
+                aspect-ratio: auto;
+            }
         }
 
         .project-cover img {

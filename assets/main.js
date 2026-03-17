@@ -558,4 +558,20 @@ $(document).ready(function () {
             $('#errorState').fadeIn(400);
         }
     }
+
+    // === FUNGSI MOBILE: Menutup navbar saat area luar diklik ===
+    $(document).on('click', function (e) {
+        const collapseElement = document.getElementById('navbarNav');
+        if (collapseElement && collapseElement.classList.contains('show')) {
+            const isClickInsideNavbar = $(e.target).closest('.navbar').length > 0;
+            const isClickOnLink = $(e.target).hasClass('nav-link') || $(e.target).closest('.nav-link').length > 0;
+            const isClickOnToggler = $(e.target).closest('.navbar-toggler').length > 0;
+
+            // Menutup jika klik di luar, ATAU jika klik link di dalam menu (kecuali ikon theme & toggler)
+            if ((!isClickInsideNavbar || isClickOnLink) && !isClickOnToggler && !$(e.target).closest('#themeToggle').length) {
+                const bsCollapse = bootstrap.Collapse.getInstance(collapseElement);
+                if (bsCollapse) bsCollapse.hide();
+            }
+        }
+    });
 });
