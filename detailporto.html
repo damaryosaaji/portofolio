@@ -15,146 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        :root {
-            --primary-blue: #007aff;
-            --primary-purple: #5856d6;
-            --accent-green: #34c759;
-            --bg-light: #fbfbfd;
-            --text-dark: #111827;
-            --text-secondary: #4b5563;
-            --border-light: rgba(0, 0, 0, 0.08);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        .material-symbols-rounded {
-            vertical-align: middle;
-            line-height: 1;
-        }
-
-        /* === NAVBAR === */
-        .navbar-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-        }
-
-        .navbar-glass.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        /* === BUTTONS === */
-        .btn-gradient {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
-            color: #ffffff !important;
-            border-radius: 100px;
-            padding: 12px 28px;
-            font-weight: 600;
-            font-size: 15px;
-            border: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-gradient:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 86, 214, 0.35);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border-light);
-            background: white;
-            color: var(--text-dark);
-            border-radius: 100px;
-            padding: 12px 28px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-outline:hover {
-            background: #f3f4f6;
-        }
-
-        /* === PROJECT HERO === */
-        .project-hero {
-            padding: 120px 0 60px;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .project-cover {
-            width: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-            aspect-ratio: 21/9;
-            background-color: #f3f4f6;
-        }
-
-        .project-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* === CONTENT SECTIONS === */
-        .detail-card {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            height: 100%;
-        }
-
-        .meta-label {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        /* === FOOTER === */
-        .footer-light {
-            background: linear-gradient(180deg, #f5f5f7 0%, #f0f0f2 100%);
-            border-top: 1px solid var(--border-light);
-            padding: 60px 0 30px 0;
-            margin-top: 80px;
-        }
-
-        /* Shimmer Loading Effect */
-        .skeleton {
-            background: #e2e5e7;
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
-            background-size: 40px 100%;
-            background-repeat: no-repeat;
-            background-position: left -40px top 0;
-            animation: shine 1s ease infinite;
-            border-radius: 8px;
-        }
-
-        @keyframes shine {
-            to {
-                background-position: right -40px top 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/main.css">
 </head>
 
 <body>
@@ -188,12 +49,12 @@
         <header class="project-hero">
             <div class="container">
                 <a href="portofolio.html"
-                    class="text-decoration-none text-secondary d-inline-flex align-items-center mb-4 fw-semibold hover-primary transition-all">
+                    class="text-decoration-none text-secondary d-inline-flex align-items-center mb-3 fw-semibold hover-primary transition-all">
                     <span class="material-symbols-rounded me-1" style="font-size: 18px;">arrow_back</span> Back to
                     Portfolio
                 </a>
 
-                <div class="row align-items-center">
+                <div class="row align-items-center reveal">
                     <div class="col-lg-8">
                         <div class="d-flex align-items-center gap-2 mb-3">
                             <span class="badge bg-dark text-white rounded-pill px-3 py-2" id="projectCategory"
@@ -220,28 +81,37 @@
                     </div>
                 </div>
 
-                <div class="project-cover">
-                    <img id="projectImage" src="" alt="Project Cover">
+                <div class="project-cover reveal reveal-delay-1">
+                    <img id="projectImageMain" src="" alt="Project Cover">
+                    <button class="gallery-nav" id="galleryPrev" aria-label="Previous image"><span
+                            class="material-symbols-rounded">chevron_left</span></button>
+                    <button class="gallery-nav" id="galleryNext" aria-label="Next image"><span
+                            class="material-symbols-rounded">chevron_right</span></button>
+                    <button class="btn-fullscreen" id="btnFullscreen" aria-label="View fullscreen"
+                        title="Fullscreen"><span class="material-symbols-rounded">fullscreen</span></button>
+                </div>
+                <div class="gallery-thumbnails" id="galleryThumbnails">
+                    <!-- Thumbnails injected here -->
                 </div>
             </div>
         </header>
 
         <!-- MAIN CONTENT -->
-        <main class="container py-5">
+        <main class="container py-5 overflow-hidden">
             <div class="row g-5">
                 <div class="col-lg-8">
                     <!-- OVERVIEW -->
-                    <h3 class="fw-bold mb-4">Project Overview</h3>
-                    <div class="text-secondary" style="font-size: 16px; line-height: 1.8;" id="projectFullDesc">
+                    <h3 class="fw-bold mb-4 reveal">Project Overview</h3>
+                    <div class="text-secondary reveal" style="font-size: 16px; line-height: 1.8;" id="projectFullDesc">
                         <p>Detailed project description goes here. It will be loaded dynamically via jQuery.</p>
                     </div>
 
                     <hr class="my-5" style="opacity: 0.1;">
 
                     <!-- CHALLENGES & SOLUTIONS -->
-                    <h3 class="fw-bold mb-4">Challenges & Solutions</h3>
+                    <h3 class="fw-bold mb-4 reveal">Challenges & Solutions</h3>
                     <div class="row g-4">
-                        <div class="col-md-6">
+                        <div class="col-md-6 reveal reveal-left">
                             <div class="detail-card">
                                 <div class="d-flex align-items-center gap-2 mb-3">
                                     <div class="bg-danger bg-opacity-10 text-danger rounded-circle p-2 d-flex"><span
@@ -252,7 +122,7 @@
                                     description.</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 reveal reveal-right">
                             <div class="detail-card">
                                 <div class="d-flex align-items-center gap-2 mb-3">
                                     <div class="bg-success bg-opacity-10 text-success rounded-circle p-2 d-flex"><span
@@ -266,7 +136,7 @@
                     </div>
 
                     <!-- BUSINESS IMPACT -->
-                    <div id="impactSection" style="display: none;" class="mt-5">
+                    <div id="impactSection" style="display: none;" class="mt-5 reveal">
                         <h3 class="fw-bold mb-4">Business Impact</h3>
                         <div class="detail-card text-white"
                             style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important; border: none; box-shadow: 0 10px 30px rgba(88, 86, 214, 0.2) !important;">
@@ -284,7 +154,7 @@
                 </div>
 
                 <!-- SIDEBAR -->
-                <div class="col-lg-4">
+                <div class="col-lg-4 reveal reveal-right">
                     <div class="detail-card sticky-top" style="top: 100px;">
                         <h4 class="fw-bold mb-4 border-bottom pb-3">Project Details</h4>
 
@@ -299,24 +169,24 @@
                         </div>
 
                         <div class="mb-4">
+                            <div class="meta-label">Project Scope</div>
+                            <ul class="text-secondary ps-3 mt-2 mb-0" style="font-size: 15px;" id="projectScope">
+                                <!-- Scope injected here -->
+                            </ul>
+                        </div>
+
+                        <div class="mb-4">
                             <div class="meta-label">Core Technologies</div>
                             <div class="d-flex flex-wrap gap-2 mt-2" id="projectTechList">
                                 <!-- Tech pills injected here -->
                             </div>
-                        </div>
-
-                        <div class="mb-0">
-                            <div class="meta-label">Key Features Delivered</div>
-                            <ul class="text-secondary ps-3 mt-2 mb-0" style="font-size: 15px;" id="projectFeatures">
-                                <!-- Features injected here -->
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- CTA SECTION -->
-            <div class="mt-5 pt-5 border-top">
+            <div class="mt-5 pt-5 border-top reveal">
                 <div class="detail-card text-center py-5"
                     style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border-radius: 24px;">
                     <h3 class="fw-bold mb-3" style="letter-spacing: -0.02em;">Ready to build something similar?</h3>
@@ -412,108 +282,18 @@
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/main.js"></script>
 
-    <script>
-        // Extended Project Database
-        const projectsData = {
-            "ecoverse": {
-                title: "Eco Verse", category: "mobile", client: "Startup B2C", timeline: "4 Months", role: "Mobile Arch., UI/UX",
-                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-                shortDesc: "SaaS-Enabled Marketplace untuk manajemen limbah cerdas. Menghubungkan warga, kurir, dan bank sampah.",
-                fullDesc: "<p>Eco Verse dibangun dengan visi menciptakan sirkular ekonomi pada pengelolaan sampah perkotaan. Aplikasi ini memungkinkan pengguna rumah tangga untuk menyetorkan sampah daur ulang dan mendapatkan saldo digital.</p><p>Saya memimpin pengembangan *cross-platform* (Android & iOS) sambil memastikan antarmuka yang gamified dan intuitif untuk semua rentang usia.</p>",
-                challenge: "Mengoptimalkan sinkronisasi data *real-time* lokasi kurir saat menjemput sampah di area minim sinyal.",
-                solution: "Mengimplementasikan strategi *offline-first* dengan sinkronisasi Firebase lokal dan sistem antrean job (queue background) di React Native.",
-                impact: "Mendapatkan 10,000+ unduhan di bulan pertama dengan tingkat adopsi harian (DAU) mencapai 40%. Mengurangi waktu penjemputan dari rata-rata 2 hari menjadi 4 jam.",
-                tech: ["React Native", "Node.js", "Firebase", "Google Maps API", "Socket.io"],
-                features: ["Sistem tracking kurir realtime", "Gamifikasi & Leaderboard", "E-Wallet Integrasi", "Offline support"]
-            },
-            "smileadvance": {
-                title: "Smile Advance", category: "enterprise", client: "Multinational FMCG", timeline: "6 Months", role: "Frontend Lead Developer",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-                shortDesc: "Aplikasi procurement enterprise terintegrasi SAP. Melibatkan pemetaan data SQL tingkat lanjut.",
-                fullDesc: "<p>Sistem internal korporat yang sepenuhnya menggantikan proses *procurement* manual dengan sistem serba digital yang terhubung secara asinkron dengan SAP ERP.</p><p>Tugas utama saya merancang arsitektur micro-frontend dan UI kompleks yang mampu menangani tabel berisi puluhan ribu baris data tanpa jeda lag browser.</p>",
-                challenge: "Merender DataGrid raksasa (50.000+ baris) di memori DOM Browser tanpa menyebabkan layar freezing atau memakan RAM besar.",
-                solution: "Menggunakan teknik DOM *Virtualization / Windowing* dan pemisahan state management menggunakan Redux Toolkit dengan normalisasi data.",
-                impact: "Waktu pemrosesan dokumen pengadaan turun hingga 65%, menghemat biaya operasional ratusan juta rupiah setiap kuartalnya. Mendapat penghargaan inovasi di lingkup korporat internal.",
-                tech: ["React.js", "Redux Toolkit", "PostgreSQL", "SAP BAPI Integration", "Material UI"],
-                features: ["Virtual Scrolling DataGrid", "Dynamic multi-step Approval", "SAP Async Postback", "Role-based UI"]
-            },
-            "fintechdash": {
-                title: "Fintech Dashboard", category: "web", client: "Bank Sampah / Koperasi", timeline: "2.5 Months", role: "Fullstack Developer",
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-                shortDesc: "Dashboard analitik keuangan real-time dengan visualisasi d3.js yang kompleks dan integrasi API perbankan.",
-                fullDesc: "<p>Sebuah platform analitik finansial yang memberikan insight visual bagi manajer untuk memonitor arus kas, pinjaman, dan deposito nasabah secara seketika (realtime).</p>",
-                challenge: "Membuat visualisasi grafik (chart) kustom yang bisa di-drill down hingga level per-transaksi.",
-                solution: "Membangun *wrapper* komponen Vue di atas *library* D3.js yang memperbolehkan perhitungan SVG matematis dinamis berdasarkan dimensi kontainer.",
-                impact: "Memudahkan manajer dan dewan redaksi untuk mengambil keputusan bisnis 3x lebih cepat dibandingkan menggunakan laporan excel konvensional bulanan.",
-                tech: ["Vue.js", "TailwindCSS", "D3.js", "Express.js"],
-                features: ["Interactive D3.js Charts", "Realtime WebSocket ticker", "Data Export (Excel/PDF)", "Dark/Light mode seamless"]
-            },
-            "medicare": {
-                title: "MediCare Booking App", category: "mobile", client: "Private Hospital", timeline: "5 Months", role: "Mobile Developer",
-                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-                shortDesc: "Aplikasi pemesanan jadwal dokter dan teledokter dengan video call terintegrasi (WebRTC).",
-                fullDesc: "<p>Solusi kesehatan terpadu pasca-pandemi yang mengizinkan pasien tidak hanya memesan jadwal kunjungan rumah sakit fisik, tapi juga mengadakan Telemedicine lewat video call end-to-end terenkripsi.</p>",
-                challenge: "Kestabilan dan delay server saat mentransfer paket Data stream Video Call.",
-                solution: "Penyetelan koneksi Peer-to-Peer menggunakan WebRTC dengan bantuan server TURN kustom untuk menembus aturan NAT ketat rumah sakit.",
-                impact: "Mengelola lebih dari 1,000 sesi telemedis tanpa kendala teknis pada peluncuran quarter awalnya. Mengurangi antrean fisik RS secara drastis.",
-                tech: ["Flutter", "Dart", "WebRTC", "Laravel API", "Pusher"],
-                features: ["P2P Video Call Telemedicine", "Live Chat", "Sistem Push Notification", "Payment Gateway"]
-            }
-        };
-
-        $(document).ready(function () {
-            // Navbar scroll effect
-            $(window).on('scroll', function () {
-                if ($(this).scrollTop() > 20) {
-                    $('#navbar').addClass('scrolled');
-                } else {
-                    $('#navbar').removeClass('scrolled');
-                }
-            });
-
-            // Parsing URL Parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const projectId = urlParams.get('id');
-
-            if (projectId && projectsData[projectId]) {
-                const p = projectsData[projectId];
-
-                // Populate Data
-                $('#projectTitle').text(p.title);
-                $('#projectCategory').text(p.category);
-                $('#projectRole').html(`<span class="material-symbols-rounded me-1" style="font-size: 16px;">person</span> ${p.role}`);
-                $('#projectShortDesc').text(p.shortDesc);
-                $('#projectImage').attr('src', p.image).attr('alt', p.title);
-
-                $('#projectFullDesc').html(p.fullDesc);
-                $('#projectChallenge').text(p.challenge);
-                $('#projectSolution').text(p.solution);
-
-                if (p.impact) {
-                    $('#projectImpact').text(p.impact);
-                    $('#impactSection').show();
-                }
-
-                $('#projectClient').text(p.client);
-                $('#projectTimeline').text(p.timeline);
-
-                // Populate Tech Pills
-                const techHtml = p.tech.map(t => `<span class="badge bg-light text-secondary border rounded-pill px-3 py-2 fw-medium">${t}</span>`).join('');
-                $('#projectTechList').html(techHtml);
-
-                // Populate Features
-                const featHtml = p.features.map(f => `<li class="mb-2">${f}</li>`).join('');
-                $('#projectFeatures').html(featHtml);
-
-                // Show Content
-                $('#projectContainer').fadeIn(400);
-            } else {
-                // Show Error State if ID not found or missing
-                $('#errorState').fadeIn(400);
-            }
-        });
-    </script>
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <button class="lightbox-close" id="closeLightbox" aria-label="Close Lightbox"><span
+                class="material-symbols-rounded">close</span></button>
+        <button class="lightbox-nav" id="lightboxPrev" aria-label="Previous image"><span
+                class="material-symbols-rounded">chevron_left</span></button>
+        <img id="lightboxImage" src="" alt="Enlarged Project Image">
+        <button class="lightbox-nav" id="lightboxNext" aria-label="Next image"><span
+                class="material-symbols-rounded">chevron_right</span></button>
+    </div>
 </body>
 
 </html>

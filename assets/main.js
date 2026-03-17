@@ -14,7 +14,7 @@ $(document).ready(function () {
         {
             id: "smileadvance",
             title: "Smile Advance",
-            category: "enterprise",
+            category: "web",
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             badge: "Enterprise",
             desc: "Aplikasi procurement enterprise terintegrasi SAP. Melibatkan pemetaan data SQL tingkat lanjut.",
@@ -39,13 +39,13 @@ $(document).ready(function () {
             tech: ["Flutter", "WebRTC", "Laravel"]
         },
         {
-            id: "hrissystem",
-            title: "HRIS Portal",
-            category: "enterprise",
-            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            badge: "Internal Tool",
-            desc: "Portal internal karyawan untuk absensi, pengajuan cuti, dan manajemen kalender perusahaan berbasis cloud.",
-            tech: ["Angular", "Azure", "SQL Server"]
+            id: "rpgadventure",
+            title: "RPG Fantasy Explorer",
+            category: "game",
+            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            badge: "Indie Game",
+            desc: "Game role-playing 3D open-world dengan sistem pertarungan real-time dan environment prosedural.",
+            tech: ["Unity", "C#", "Blender"]
         },
         {
             id: "ecommerce",
@@ -125,6 +125,22 @@ $(document).ready(function () {
             tech: ["Flutter", "Dart", "WebRTC", "Laravel API", "Pusher"],
             scope: ["Cross-platform Mobile Dev", "WebRTC implementation", "Push Notification Integration", "Payment Gateway Setup"],
             features: ["P2P Video Call Telemedicine", "Live Chat", "Sistem Push Notification", "Payment Gateway"]
+        },
+        "rpgadventure": {
+            title: "RPG Fantasy Explorer", category: "game", client: "Indie Studio", timeline: "8 Months", role: "Game Programmer",
+            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            images: [
+                "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            ],
+            shortDesc: "Game role-playing 3D open-world dengan sistem pertarungan real-time dan environment prosedural.",
+            fullDesc: "<p>RPG Fantasy Explorer adalah proyek game indie yang berfokus pada eksplorasi dunia fantasi yang luas dengan mekanik pertarungan yang intens.</p><p>Saya bertanggung jawab atas pemrograman mekanik utama termasuk AI musuh, sistem inventaris, dan optimasi rendering.</p>",
+            challenge: "Mengelola performa rendering saat memuat ribuan objek secara dinamis (procedural generation) tanpa frame drop.",
+            solution: "Menerapkan sistem Object Pooling dan teknik Occlusion Culling di Unity, serta menggunakan shader kustom yang dioptimalkan.",
+            impact: "Game berjalan mulus di 60 FPS pada perangkat mid-range dan mendapatkan review 'Sangat Positif' selama fase Early Access.",
+            tech: ["Unity 3D", "C#", "Blender", "HLSL"],
+            scope: ["Core Gameplay Programming", "Enemy AI", "UI/UX Game Design", "Performance Optimization"],
+            features: ["Open World Exploration", "Real-time Combat System", "Dynamic Weather", "Quest Tracking"]
         }
     };
 
@@ -198,7 +214,7 @@ $(document).ready(function () {
     }
 
     // Animasi Scroll Reveal
-    if ($('.reveal').length) {
+    if ($('.reveal, .reveal-left, .reveal-right').length) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

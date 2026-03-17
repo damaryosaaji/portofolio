@@ -364,11 +364,15 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            text-decoration: none;
+            color: var(--text-dark);
         }
 
         .card-modern:hover {
             transform: translateY(-6px);
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: var(--text-dark);
         }
 
         .card-modern-img {
@@ -820,4 +824,236 @@
             color: white;
             box-shadow: 0 4px 15px rgba(88, 86, 214, 0.3);
             border-color: transparent;
+        }
+
+        /* === DETAIL PORTO SPECIFIC === */
+        .project-hero {
+            padding: 90px 0 24px;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .project-cover {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            aspect-ratio: 24/9;
+            max-height: 420px;
+            background-color: #f3f4f6;
+            position: relative;
+        }
+
+        .project-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            height: 100%;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        /* === GALLERY & LIGHTBOX === */
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .thumbnail-item {
+            width: 86px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .thumbnail-item.active,
+        .thumbnail-item:hover {
+            opacity: 1;
+            border-color: var(--primary-blue);
+        }
+
+        .thumbnail-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .gallery-nav:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #galleryPrev {
+            left: 20px;
+        }
+
+        #galleryNext {
+            right: 20px;
+        }
+
+        .btn-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .btn-fullscreen:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            padding: 20px;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 1;
+        }
+
+        #lightboxPrev {
+            left: 20px;
+        }
+
+        #lightboxNext {
+            right: 20px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-light);
+            background: white;
+            color: var(--text-dark);
+            border-radius: 100px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: #f3f4f6;
+        }
+
+        /* Shimmer Loading Effect */
+        .skeleton {
+            background: #e2e5e7;
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+            background-size: 40px 100%;
+            background-repeat: no-repeat;
+            background-position: left -40px top 0;
+            animation: shine 1s ease infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: right -40px top 0;
+            }
         }
