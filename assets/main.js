@@ -66,6 +66,11 @@ $(document).ready(function () {
                 "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
             ],
+            imageTitles: [
+                "Eco Verse App Interface",
+                "Courier Tracking System",
+                "Gamification Dashboard"
+            ],
             shortDesc: "SaaS-Enabled Marketplace untuk manajemen limbah cerdas. Menghubungkan warga, kurir, dan bank sampah.",
             fullDesc: "<p>Eco Verse dibangun dengan visi menciptakan sirkular ekonomi pada pengelolaan sampah perkotaan. Aplikasi ini memungkinkan pengguna rumah tangga untuk menyetorkan sampah daur ulang dan mendapatkan saldo digital.</p><p>Saya memimpin pengembangan *cross-platform* (Android & iOS) sambil memastikan antarmuka yang gamified dan intuitif untuk semua rentang usia.</p>",
             challenge: "Mengoptimalkan sinkronisasi data *real-time* lokasi kurir saat menjemput sampah di area minim sinyal.",
@@ -82,6 +87,11 @@ $(document).ready(function () {
                 "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            ],
+            imageTitles: [
+                "Procurement Dashboard Overview",
+                "Virtual Scrolling DataGrid",
+                "SAP Approval Workflow"
             ],
             shortDesc: "Aplikasi procurement enterprise terintegrasi SAP. Melibatkan pemetaan data SQL tingkat lanjut.",
             fullDesc: "<p>Sistem internal korporat yang sepenuhnya menggantikan proses *procurement* manual dengan sistem serba digital yang terhubung secara asinkron dengan SAP ERP.</p><p>Tugas utama saya merancang arsitektur micro-frontend dan UI kompleks yang mampu menangani tabel berisi puluhan ribu baris data tanpa jeda lag browser.</p>",
@@ -100,6 +110,11 @@ $(document).ready(function () {
                 "https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
             ],
+            imageTitles: [
+                "Real-time Financial Analytics",
+                "D3.js Custom Visualizations",
+                "Cash Flow Monitoring Panel"
+            ],
             shortDesc: "Dashboard analitik keuangan real-time dengan visualisasi d3.js yang kompleks dan integrasi API perbankan.",
             fullDesc: "<p>Sebuah platform analitik finansial yang memberikan insight visual bagi manajer untuk memonitor arus kas, pinjaman, dan deposito nasabah secara seketika (realtime).</p>",
             challenge: "Membuat visualisasi grafik (chart) kustom yang bisa di-drill down hingga level per-transaksi.",
@@ -117,6 +132,11 @@ $(document).ready(function () {
                 "https://images.unsplash.com/photo-1584982751601-97dcc096659c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1511174511562-5f7f18b874f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
             ],
+            imageTitles: [
+                "Telemedicine App Interface",
+                "Encrypted WebRTC Video Call",
+                "Hospital Booking System"
+            ],
             shortDesc: "Aplikasi pemesanan jadwal dokter dan teledokter dengan video call terintegrasi (WebRTC).",
             fullDesc: "<p>Solusi kesehatan terpadu pasca-pandemi yang mengizinkan pasien tidak hanya memesan jadwal kunjungan rumah sakit fisik, tapi juga mengadakan Telemedicine lewat video call end-to-end terenkripsi.</p>",
             challenge: "Kestabilan dan delay server saat mentransfer paket Data stream Video Call.",
@@ -132,6 +152,10 @@ $(document).ready(function () {
             images: [
                 "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
                 "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            ],
+            imageTitles: [
+                "Procedural Open World",
+                "Real-time Combat Action"
             ],
             shortDesc: "Game role-playing 3D open-world dengan sistem pertarungan real-time dan environment prosedural.",
             fullDesc: "<p>RPG Fantasy Explorer adalah proyek game indie yang berfokus pada eksplorasi dunia fantasi yang luas dengan mekanik pertarungan yang intens.</p><p>Saya bertanggung jawab atas pemrograman mekanik utama termasuk AI musuh, sistem inventaris, dan optimasi rendering.</p>",
@@ -335,9 +359,10 @@ $(document).ready(function () {
                 const cardHtml = `
                     <div class="col-md-6 col-lg-4" style="animation: fadeUp 0.5s ease ${delay}s both;">
                         <a href="detailporto.html?id=${p.id}" class="card-modern">
-                            <div class="card-modern-img">
+                            <div class="card-modern-img position-relative">
                                 <div class="card-badge"><span class="material-symbols-rounded me-1" style="font-size: 14px;">stars</span> ${p.badge}</div>
                                 <img src="${p.image}" alt="${p.title}" loading="lazy">
+                                <div class="position-absolute top-0 start-0 w-100 h-100" oncontextmenu="return false;"></div>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">${p.title}</h4>
                             <p class="text-secondary mb-3 flex-grow-1" style="font-size: 14px;">${p.desc}</p>
@@ -419,7 +444,8 @@ $(document).ready(function () {
                 currentImgIndex = index;
                 $('#projectImageMain').css('opacity', 0.6);
                 setTimeout(() => {
-                    $('#projectImageMain').attr('src', projectImages[index]).attr('alt', `${p.title} - Image ${index + 1}`).css('opacity', 1);
+                    const imgAlt = p.imageTitles && p.imageTitles[index] ? p.imageTitles[index] : `${p.title} - Image ${index + 1}`;
+                    $('#projectImageMain').attr('src', projectImages[index]).attr('alt', imgAlt).css('opacity', 1);
                 }, 200);
 
                 $('.thumbnail-item').removeClass('active');
@@ -427,11 +453,14 @@ $(document).ready(function () {
             }
 
             if (projectImages.length > 0) {
-                const thumbsHtml = projectImages.map((img, idx) => `
-                    <div class="thumbnail-item ${idx === 0 ? 'active' : ''}" data-index="${idx}">
-                        <img src="${img}" alt="Thumbnail ${idx + 1}" loading="lazy">
+                const thumbsHtml = projectImages.map((img, idx) => {
+                    const thumbAlt = p.imageTitles && p.imageTitles[idx] ? p.imageTitles[idx] : `Thumbnail ${idx + 1}`;
+                    return `
+                    <div class="thumbnail-item ${idx === 0 ? 'active' : ''} position-relative" data-index="${idx}">
+                        <img src="${img}" alt="${thumbAlt}" loading="lazy">
+                        <div class="position-absolute top-0 start-0 w-100 h-100" oncontextmenu="return false;"></div>
                     </div>
-                `).join('');
+                `}).join('');
                 $('#galleryThumbnails').html(thumbsHtml);
                 updateGallery(0);
 
@@ -448,6 +477,8 @@ $(document).ready(function () {
             // Setup Lightbox (Fullscreen)
             const openLightbox = () => {
                 $('#lightboxImage').attr('src', projectImages[currentImgIndex]);
+                const imgTitle = p.imageTitles && p.imageTitles[currentImgIndex] ? p.imageTitles[currentImgIndex] : p.title;
+                $('#lightboxCaption').text(`${imgTitle} (Image ${currentImgIndex + 1} of ${projectImages.length})`);
                 $('#lightbox').fadeIn(300).css('display', 'flex');
                 $('body').css('overflow', 'hidden'); // Mencegah scrolling pada background
 
@@ -459,7 +490,7 @@ $(document).ready(function () {
                 }
             };
 
-            $('#projectImageMain, #btnFullscreen').on('click', openLightbox);
+            $('#mainImageShield, #btnFullscreen').on('click', openLightbox);
 
             $('#lightbox, #closeLightbox').on('click', function (e) {
                 if (e.target === this || e.currentTarget.id === 'closeLightbox') {
@@ -473,12 +504,16 @@ $(document).ready(function () {
                 e.stopPropagation(); // Mencegah lightbox tertutup saat tombol diklik
                 updateGallery(currentImgIndex === 0 ? projectImages.length - 1 : currentImgIndex - 1);
                 $('#lightboxImage').attr('src', projectImages[currentImgIndex]);
+                const imgTitle = p.imageTitles && p.imageTitles[currentImgIndex] ? p.imageTitles[currentImgIndex] : p.title;
+                $('#lightboxCaption').text(`${imgTitle} (Image ${currentImgIndex + 1} of ${projectImages.length})`);
             });
 
             $('#lightboxNext').on('click', function (e) {
                 e.stopPropagation();
                 updateGallery(currentImgIndex === projectImages.length - 1 ? 0 : currentImgIndex + 1);
                 $('#lightboxImage').attr('src', projectImages[currentImgIndex]);
+                const imgTitle = p.imageTitles && p.imageTitles[currentImgIndex] ? p.imageTitles[currentImgIndex] : p.title;
+                $('#lightboxCaption').text(`${imgTitle} (Image ${currentImgIndex + 1} of ${projectImages.length})`);
             });
 
             // Navigasi Keyboard (Escape & Arrow Keys)

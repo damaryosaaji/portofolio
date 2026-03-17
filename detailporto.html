@@ -42,8 +42,9 @@
                     <li class="nav-item"><a class="nav-link text-dark"
                             href="index.html#testimonials">Recommendations</a>
                     </li>
-                    <li class="nav-item ms-lg-2"><a href="#contact" class="btn-gradient text-decoration-none py-2 px-4"
-                            style="font-size: 14px;">Let's Connect</a></li>
+                    <li class="nav-item ms-lg-2"><a href="index.html#contact"
+                            class="btn-gradient text-decoration-none py-2 px-4" style="font-size: 14px;">Let's
+                            Connect</a></li>
                 </ul>
             </div>
         </div>
@@ -88,6 +89,8 @@
 
                 <div class="project-cover reveal reveal-delay-1">
                     <img id="projectImageMain" src="" alt="Project Cover">
+                    <div class="position-absolute top-0 start-0 w-100 h-100" id="mainImageShield"
+                        style="cursor: pointer;" oncontextmenu="return false;"></div>
                     <button class="gallery-nav" id="galleryPrev" aria-label="Previous image"><span
                             class="material-symbols-rounded">chevron_left</span></button>
                     <button class="gallery-nav" id="galleryNext" aria-label="Next image"><span
@@ -279,13 +282,22 @@
 
     <!-- LIGHTBOX -->
     <div id="lightbox">
-        <button class="lightbox-close" id="closeLightbox" aria-label="Close Lightbox"><span
+        <button class="lightbox-close" id="closeLightbox" aria-label="Close Lightbox" style="z-index: 10;"><span
                 class="material-symbols-rounded">close</span></button>
-        <button class="lightbox-nav" id="lightboxPrev" aria-label="Previous image"><span
+        <button class="lightbox-nav" id="lightboxPrev" aria-label="Previous image" style="z-index: 10;"><span
                 class="material-symbols-rounded">chevron_left</span></button>
-        <img id="lightboxImage" src="" alt="Enlarged Project Image">
-        <button class="lightbox-nav" id="lightboxNext" aria-label="Next image"><span
+        <div class="position-relative d-flex justify-content-center align-items-center"
+            style="max-width: 90%; max-height: 90vh;">
+            <img id="lightboxImage" src="" alt="Enlarged Project Image" style="max-width: 100% !important;">
+            <div class="position-absolute top-0 start-0 w-100 h-100" oncontextmenu="return false;"
+                style="border-radius: 12px; z-index: 1;"></div>
+        </div>
+        <button class="lightbox-nav" id="lightboxNext" aria-label="Next image" style="z-index: 10;"><span
                 class="material-symbols-rounded">chevron_right</span></button>
+        <div id="lightboxCaption"
+            class="position-absolute bottom-0 start-50 translate-middle-x mb-4 text-white px-4 py-2 rounded-pill shadow"
+            style="background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 10; font-size: 15px; font-weight: 500; text-align: center; white-space: nowrap; pointer-events: none;">
+        </div>
     </div>
 </body>
 
