@@ -170,6 +170,28 @@ $(document).ready(function () {
 
     // === FUNGSI UMUM UNTUK SEMUA HALAMAN ===
 
+    // === FITUR DARK MODE ===
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            $('#themeToggle').html('<span class="material-symbols-rounded" style="font-size: 20px;">light_mode</span>');
+        } else {
+            $('#themeToggle').html('<span class="material-symbols-rounded" style="font-size: 20px;">dark_mode</span>');
+        }
+    }
+
+    // Sinkronisasi ikon tombol saat halaman dimuat
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeIcon(currentTheme);
+
+    // Event klik untuk toggle tema
+    $('#themeToggle').on('click', function () {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
     // Efek shadow pada Navbar saat di-scroll
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 50) {

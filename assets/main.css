@@ -6,6 +6,34 @@
             --text-dark: #111827;
             --text-secondary: #4b5563;
             --border-light: rgba(0, 0, 0, 0.08);
+            --surface-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --gradient-1: #f8fafc;
+            --gradient-2: #f1f5f9;
+            --hero-bg-1: #f0f4f8;
+            --hero-bg-2: #e8eef5;
+            --page-header-1: #f5f5f7;
+            --page-header-2: #f0f0f2;
+            --project-hero-1: #f8fafc;
+            --project-hero-2: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary-blue: #3b82f6;
+            --bg-light: #0f172a;
+            --surface-bg: #1e293b;
+            --text-dark: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --gradient-1: #0f172a;
+            --gradient-2: #1e293b;
+            --hero-bg-1: #020617;
+            --hero-bg-2: #0f172a;
+            --page-header-1: #0f172a;
+            --page-header-2: #1e293b;
+            --project-hero-1: #0f172a;
+            --project-hero-2: #1e293b;
         }
 
         html {
@@ -17,6 +45,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .material-symbols-rounded {
@@ -113,7 +142,7 @@
         #hero {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(180deg, #f0f4f8 0%, #e8eef5 100%);
+            background: linear-gradient(180deg, var(--hero-bg-1) 0%, var(--hero-bg-2) 100%);
             min-height: 100vh;
             z-index: 1;
         }
@@ -201,7 +230,7 @@
 
         /* === NAVBAR === */
         .navbar-glass {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border-light);
             transition: all 0.3s ease;
@@ -209,6 +238,81 @@
 
         .navbar-glass.scrolled {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* === THEME TOGGLE BUTTON === */
+        .theme-toggle {
+            background: var(--surface-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-blue);
+            transform: scale(1.05) rotate(-15deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-blue);
+        }
+
+        /* === DARK MODE GLOBAL OVERRIDES === */
+        [data-theme="dark"] .bg-white {
+            background-color: var(--surface-bg) !important;
+        }
+
+        [data-theme="dark"] .bg-light {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        [data-theme="dark"] .text-dark {
+            color: var(--text-dark) !important;
+        }
+
+        [data-theme="dark"] .border-bottom,
+        [data-theme="dark"] .border-top,
+        [data-theme="dark"] .border {
+            border-color: var(--border-light) !important;
+        }
+
+        [data-theme="dark"] .btn-outline-dark {
+            border-color: var(--border-light);
+            color: var(--text-dark) !important;
+            background: var(--surface-bg);
+        }
+
+        [data-theme="dark"] .btn-outline-dark:hover {
+            background: var(--border-light) !important;
+        }
+
+        [data-theme="dark"] .btn-white {
+            background: var(--surface-bg);
+            color: var(--text-dark) !important;
+            border: 1px solid var(--border-light);
+        }
+
+        [data-theme="dark"] .process-icon {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .bento-card {
+            background-color: #020617;
+        }
+
+        [data-theme="dark"] .modern-tabs {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="dark"] .modern-tabs .nav-link.active {
+            background: var(--surface-bg);
         }
 
         /* === CLIENT LOGOS === */
@@ -296,7 +400,7 @@
 
         /* === STATS CARDS === */
         .stat-card {
-            background: #ffffff;
+            background: var(--surface-bg);
             border-radius: 20px;
             border: 1px solid var(--border-light);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
@@ -354,7 +458,7 @@
         }
 
         .card-modern {
-            background: #ffffff;
+            background: var(--surface-bg);
             border-radius: 24px;
             padding: 16px;
             border: 1px solid var(--border-light);
@@ -376,7 +480,7 @@
         }
 
         .card-modern-img {
-            background-color: #f3f4f6;
+            background-color: var(--bg-light);
             border-radius: 16px;
             overflow: hidden;
             position: relative;
@@ -399,7 +503,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            background: #ffffff;
+            background: var(--surface-bg);
             color: var(--text-dark);
             font-weight: 600;
             font-size: 11px;
@@ -431,7 +535,7 @@
 
         /* === TESTIMONIALS === */
         .testimonial-card {
-            background: #ffffff;
+            background: var(--surface-bg);
             border-radius: 24px;
             padding: 32px;
             border: 1px solid var(--border-light);
@@ -770,7 +874,7 @@
         .page-header {
             padding: 140px 0 70px 0;
             text-align: center;
-            background: linear-gradient(180deg, #f5f5f7 0%, #f0f0f2 100%);
+            background: linear-gradient(180deg, var(--page-header-1) 0%, var(--page-header-2) 100%);
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -783,7 +887,8 @@
             padding-left: 48px;
             height: 48px;
             border: 1px solid var(--border-light);
-            background-color: #fff;
+            background-color: var(--surface-bg);
+            color: var(--text-dark);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
             transition: all 0.3s ease;
         }
@@ -804,7 +909,7 @@
         }
 
         .filter-btn {
-            background-color: #fff;
+            background-color: var(--surface-bg);
             border: 1px solid var(--border-light);
             color: var(--text-secondary);
             font-weight: 600;
@@ -829,7 +934,7 @@
         /* === DETAIL PORTO SPECIFIC === */
         .project-hero {
             padding: 90px 0 24px;
-            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            background: linear-gradient(180deg, var(--project-hero-1) 0%, var(--project-hero-2) 100%);
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -854,7 +959,7 @@
         }
 
         .detail-card {
-            background: white;
+            background: var(--surface-bg);
             border-radius: 20px;
             padding: 32px;
             border: 1px solid var(--border-light);
