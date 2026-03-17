@@ -23,7 +23,7 @@
             --bg-light: #0f172a;
             --surface-bg: #1e293b;
             --text-dark: #f8fafc;
-            --text-secondary: #94a3b8;
+            --text-secondary: #cbd5e1;
             --border-light: rgba(255, 255, 255, 0.1);
             --glass-bg: rgba(15, 23, 42, 0.85);
             --gradient-1: #0f172a;
@@ -272,8 +272,19 @@
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
 
+        [data-theme="dark"] .bg-dark {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: var(--text-dark) !important;
+            border: 1px solid var(--border-light) !important;
+        }
+
         [data-theme="dark"] .text-dark {
             color: var(--text-dark) !important;
+        }
+
+        [data-theme="dark"] .text-secondary,
+        [data-theme="dark"] .text-muted {
+            color: var(--text-secondary) !important;
         }
 
         [data-theme="dark"] .border-bottom,
@@ -312,6 +323,16 @@
         }
 
         [data-theme="dark"] .modern-tabs .nav-link.active {
+            background: var(--surface-bg);
+        }
+
+        [data-theme="dark"] .gallery-nav {
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+        }
+
+        [data-theme="dark"] .gallery-nav:hover {
             background: var(--surface-bg);
         }
 
@@ -434,7 +455,7 @@
         }
 
         .modern-tabs .nav-link {
-            color: #4b5563;
+            color: var(--text-secondary);
             font-weight: 600;
             border-radius: 50px;
             padding: 10px 24px;
@@ -898,6 +919,11 @@
             border-color: var(--primary-blue);
         }
 
+        .search-input::placeholder {
+            color: var(--text-secondary) !important;
+            opacity: 0.7 !important;
+        }
+
         .search-icon {
             position: absolute;
             left: 20px;
@@ -1014,6 +1040,7 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.8);
+            color: var(--text-dark);
             border: none;
             width: 40px;
             height: 40px;
@@ -1028,7 +1055,7 @@
         }
 
         .gallery-nav:hover {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             transform: translateY(-50%) scale(1.1);
         }
 
@@ -1130,7 +1157,7 @@
 
         .btn-outline {
             border: 1px solid var(--border-light);
-            background: white;
+            background: var(--surface-bg);
             color: var(--text-dark);
             border-radius: 100px;
             padding: 12px 28px;
@@ -1143,7 +1170,7 @@
         }
 
         .btn-outline:hover {
-            background: #f3f4f6;
+            background: var(--bg-light);
         }
 
         /* Shimmer Loading Effect */
